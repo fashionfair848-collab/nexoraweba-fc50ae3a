@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Linkedin, Github, Twitter } from "lucide-react";
-import nexoraLogo from "@/assets/nexora-logo.svg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -11,8 +10,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Column */}
           <div className="space-y-6">
-            <Link to="/" className="inline-block">
-              <img src={nexoraLogo} alt="NEXORA" className="h-14 w-auto" />
+            <Link to="/" className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                <span className="text-primary-foreground font-display font-bold text-lg">N</span>
+              </div>
+              <span className="font-display font-bold text-xl text-foreground">NEXORA</span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
               We don't just build websites—we craft digital experiences that make your business unstoppable.
