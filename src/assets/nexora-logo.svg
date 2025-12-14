@@ -1,0 +1,11 @@
+<svg width="120" height="100" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icon: Hexagon with N -->
+  <path d="M60 10L75 18.66V35.98L60 44.64L45 35.98V18.66L60 10Z" stroke="#3B82F6" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
+  <path d="M53 23V37L60 33.5V19.5L67 23V37" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Text: NEXORA -->
+  <text x="60" y="75" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#0F172A" text-anchor="middle" letter-spacing="0.8">NEXORA</text>
+  
+  <!-- Tagline -->
+  <text x="60" y="90" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="400" fill="#64748B" text-anchor="middle" letter-spacing="0.3">Building Tomorrow's Web</text>
+</svg>
