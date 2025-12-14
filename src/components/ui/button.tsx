@@ -16,10 +16,10 @@ const buttonVariants = cva(
         ghost: "hover:bg-secondary hover:text-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         // NEXORA Custom Variants
-        hero: "bg-gradient-to-r from-primary to-accent text-primary-foreground font-bold px-8 py-6 text-base hover:scale-105 hover:shadow-[0_0_30px_hsl(210_72%_59%/0.5)] transition-all duration-300",
-        "hero-outline": "border-2 border-primary/50 bg-transparent text-foreground hover:bg-primary/10 hover:border-primary px-8 py-6 text-base font-semibold transition-all duration-300",
-        glow: "bg-primary text-primary-foreground hover:shadow-[0_0_40px_hsl(210_72%_59%/0.6)] hover:scale-105 transition-all duration-300",
-        glass: "bg-white/5 backdrop-blur-md border border-white/10 text-foreground hover:bg-white/10 hover:border-primary/50 transition-all duration-300",
+        hero: "bg-gradient-to-r from-primary to-accent text-primary-foreground font-bold px-8 py-6 text-base hover:scale-105 hover:shadow-[0_0_30px_hsl(210_72%_50%/0.4)] transition-all duration-300",
+        "hero-outline": "border-2 border-primary/50 bg-background/50 text-foreground hover:bg-primary/10 hover:border-primary px-8 py-6 text-base font-semibold transition-all duration-300",
+        glow: "bg-primary text-primary-foreground hover:shadow-[0_0_30px_hsl(210_72%_50%/0.4)] hover:scale-105 transition-all duration-300",
+        glass: "bg-background/50 backdrop-blur-md border border-border text-foreground hover:bg-secondary hover:border-primary/50 transition-all duration-300",
         whatsapp: "bg-[#25D366] text-white hover:bg-[#128C7E] hover:scale-105 hover:shadow-lg transition-all duration-300",
       },
       size: {

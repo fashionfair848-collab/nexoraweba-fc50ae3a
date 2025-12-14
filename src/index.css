@@ -6,6 +6,72 @@
 
 @layer base {
   :root {
+    /* NEXORA Professional Light Theme */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 210 40% 98%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 210 72% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 213 94% 58%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 210 72% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom NEXORA tokens - Light */
+    --nexora-navy: 222 47% 11%;
+    --nexora-deep: 228 38% 16%;
+    --nexora-blue: 210 72% 50%;
+    --nexora-cyan: 213 94% 58%;
+    --nexora-glow: 210 100% 60%;
+    
+    /* Glassmorphism - Light */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+    
+    /* Gradients - Light */
+    --gradient-primary: linear-gradient(135deg, hsl(210 72% 50%), hsl(213 94% 58%));
+    --gradient-hero: linear-gradient(135deg, hsl(210 40% 98%) 0%, hsl(210 40% 96%) 50%, hsl(0 0% 100%) 100%);
+    --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 100%);
+    --gradient-glow: radial-gradient(ellipse at center, hsl(210 72% 50% / 0.08) 0%, transparent 70%);
+    
+    /* Shadows - Light */
+    --shadow-glow: 0 0 40px hsl(210 72% 50% / 0.15);
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.1);
+    
+    /* Sidebar */
+    --sidebar-background: 210 40% 98%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 210 72% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 210 72% 50%;
+  }
+
+  .dark {
     /* NEXORA Premium Dark Theme */
     --background: 222 47% 11%;
     --foreground: 210 40% 98%;
@@ -35,44 +101,38 @@
     --input: 228 20% 25%;
     --ring: 210 72% 59%;
 
-    --radius: 0.75rem;
-
-    /* Custom NEXORA tokens */
+    /* Custom NEXORA tokens - Dark */
     --nexora-navy: 228 38% 16%;
     --nexora-deep: 222 47% 11%;
     --nexora-blue: 210 72% 59%;
     --nexora-cyan: 213 94% 68%;
     --nexora-glow: 210 100% 70%;
     
-    /* Glassmorphism */
+    /* Glassmorphism - Dark */
     --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
     --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     
-    /* Gradients */
+    /* Gradients - Dark */
     --gradient-primary: linear-gradient(135deg, hsl(210 72% 59%), hsl(213 94% 68%));
     --gradient-hero: linear-gradient(135deg, hsl(222 47% 11%) 0%, hsl(228 38% 16%) 50%, hsl(222 47% 11%) 100%);
     --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
     --gradient-glow: radial-gradient(ellipse at center, hsl(210 72% 59% / 0.15) 0%, transparent 70%);
     
-    /* Shadows */
+    /* Shadows - Dark */
     --shadow-glow: 0 0 40px hsl(210 72% 59% / 0.3);
     --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
     --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
     
-    /* Sidebar (keeping for compatibility) */
+    /* Sidebar - Dark */
     --sidebar-background: 228 38% 12%;
     --sidebar-foreground: 210 40% 98%;
     --sidebar-primary: 210 72% 59%;
-    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 228 38% 20%;
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 228 20% 25%;
     --sidebar-ring: 210 72% 59%;
-  }
-
-  .dark {
-    /* Already dark by default */
   }
 }
 
@@ -168,7 +228,7 @@
     transform: translate(-50%, -50%);
     width: 60%;
     height: 60%;
-    background: radial-gradient(ellipse, hsl(210 72% 59% / 0.08) 0%, transparent 70%);
+    background: radial-gradient(ellipse, hsl(var(--primary) / 0.05) 0%, transparent 70%);
     pointer-events: none;
   }
 }
@@ -209,10 +269,10 @@
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px hsl(210 72% 59% / 0.4);
+    box-shadow: 0 0 20px hsl(210 72% 50% / 0.4);
   }
   50% {
-    box-shadow: 0 0 40px hsl(210 72% 59% / 0.6);
+    box-shadow: 0 0 40px hsl(210 72% 50% / 0.6);
   }
 }
 
@@ -243,14 +303,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(222 47% 11%);
+  background: hsl(var(--background));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(228 38% 25%);
+  background: hsl(var(--muted));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(210 72% 59%);
+  background: hsl(var(--primary));
 }
