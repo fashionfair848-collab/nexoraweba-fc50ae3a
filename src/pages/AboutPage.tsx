@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Flame, Sparkles, Handshake, Zap, X, Check } from "lucide-react";
+import { ArrowRight, Flame, Sparkles, Handshake, Zap, X, Check, Linkedin, Github, Twitter, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GlassCard from "@/components/ui/GlassCard";
 import SectionWrapper from "@/components/ui/SectionWrapper";
+import ScaleOnScroll from "@/components/ui/ScaleOnScroll";
 
 const values = [
   {
@@ -53,6 +54,32 @@ const nexoraDifference = [
   "Transparent, honest pricing",
 ];
 
+const team = [
+  {
+    name: "Ali Haider",
+    role: "Founder & CEO",
+    bio: "Started with a dream and a second-hand laptop. Today, leading NEXORA to transform businesses with cutting-edge web solutions. Every line of code carries a mission: Making your business shine online.",
+    initials: "AH",
+    isFounder: true,
+    socials: {
+      linkedin: "#",
+      github: "#",
+      twitter: "#",
+    },
+  },
+  {
+    name: "Usman",
+    role: "Partner & Developer",
+    bio: "Technical expertise meets creative problem-solving. Building robust solutions that scale with your business.",
+    initials: "U",
+    isFounder: false,
+    socials: {
+      linkedin: "#",
+      github: "#",
+    },
+  },
+];
+
 const AboutPage = () => {
   return (
     <div className="min-h-screen pt-24">
@@ -60,6 +87,16 @@ const AboutPage = () => {
       <SectionWrapper className="py-16 section-glow">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6"
+            >
+              <Award size={16} />
+              <span className="text-sm font-medium">About Us</span>
+            </motion.div>
+            
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -80,165 +117,348 @@ const AboutPage = () => {
         </div>
       </SectionWrapper>
 
-      {/* Founder's Journey */}
+      {/* Team Section */}
       <SectionWrapper className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <ScaleOnScroll>
+            <div className="text-center mb-16">
+              <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
+                Meet the <span className="gradient-text">Team</span>
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                The passionate minds behind NEXORA's success
+              </p>
+            </div>
+          </ScaleOnScroll>
+
+          <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {/* Founder - Ali Haider (Large) */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6 }}
               viewport={{ once: true }}
+              className="lg:col-span-2"
             >
-              <GlassCard className="aspect-square flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-40 h-40 rounded-full bg-gradient-to-br from-primary to-accent mx-auto mb-6 flex items-center justify-center">
-                    <span className="text-6xl font-display font-bold text-primary-foreground">AH</span>
+              <GlassCard className="h-full group overflow-hidden">
+                <div className="flex flex-col md:flex-row items-center gap-8 py-6">
+                  {/* Image */}
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    className="relative shrink-0"
+                  >
+                    <div className="w-44 h-44 rounded-full bg-gradient-to-br from-primary via-accent to-primary p-1 animate-pulse-glow">
+                      <div className="w-full h-full rounded-full bg-card flex items-center justify-center overflow-hidden">
+                        <span className="text-5xl font-display font-bold text-primary">AH</span>
+                      </div>
+                    </div>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.3 }}
+                      className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-primary to-accent rounded-full"
+                    >
+                      <span className="text-xs font-semibold text-primary-foreground">Founder</span>
+                    </motion.div>
+                  </motion.div>
+                  
+                  {/* Info */}
+                  <div className="text-center md:text-left flex-1">
+                    <h3 className="font-display text-2xl font-bold text-foreground mb-1">Ali Haider</h3>
+                    <p className="text-primary font-medium mb-4">CEO & Lead Developer</p>
+                    <p className="text-muted-foreground leading-relaxed mb-6">
+                      {team[0].bio}
+                    </p>
+                    
+                    {/* Social Links */}
+                    <div className="flex justify-center md:justify-start gap-3">
+                      <motion.a
+                        href="#"
+                        whileHover={{ scale: 1.2, y: -3 }}
+                        className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
+                      >
+                        <Linkedin size={18} />
+                      </motion.a>
+                      <motion.a
+                        href="#"
+                        whileHover={{ scale: 1.2, y: -3 }}
+                        className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
+                      >
+                        <Github size={18} />
+                      </motion.a>
+                      <motion.a
+                        href="#"
+                        whileHover={{ scale: 1.2, y: -3 }}
+                        className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
+                      >
+                        <Twitter size={18} />
+                      </motion.a>
+                    </div>
                   </div>
-                  <h3 className="font-display text-2xl font-bold text-foreground mb-1">Ali Haider</h3>
-                  <p className="text-primary">Founder & CEO</p>
                 </div>
               </GlassCard>
             </motion.div>
-            
+
+            {/* Partner - Usman (Smaller) */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
               viewport={{ once: true }}
             >
-              <h2 className="font-display text-3xl md:text-4xl font-bold mb-8">
-                From Struggle to <span className="gradient-text">Success</span>
-              </h2>
-              <div className="space-y-6 text-muted-foreground leading-relaxed">
-                <p>
-                  My journey with web development started in a small room with a second-hand laptop and a dream that seemed impossible.
+              <GlassCard className="h-full text-center group py-8">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="relative mx-auto w-32 h-32 mb-6"
+                >
+                  <div className="w-full h-full rounded-full bg-gradient-to-br from-accent via-primary to-accent p-1">
+                    <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
+                      <span className="text-4xl font-display font-bold text-accent">U</span>
+                    </div>
+                  </div>
+                </motion.div>
+                <h3 className="font-display text-xl font-bold text-foreground mb-1">Usman</h3>
+                <p className="text-accent font-medium mb-4">Partner & Developer</p>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                  {team[1].bio}
                 </p>
-                <p>
-                  I was earning just 20,000 rupees a month, barely enough to get by. But every time I built a website for someone, watching their face light up when they saw their idea come to life—that was everything.
-                </p>
-                <p>
-                  I saw talented entrepreneurs with brilliant ideas being held back by terrible websites. I saw small businesses losing customers to competitors not because they were better, but because their websites LOOKED better.
-                </p>
-                <p>
-                  That's when I realized: <span className="text-foreground font-medium">everyone deserves a website that matches their ambition.</span>
-                </p>
-                <p>
-                  NEXORA was born from that belief. Today, we've helped over 50 businesses transform their online presence. Every project we take on carries the same care and dedication as if it were our own business.
-                </p>
-                <p className="text-primary font-medium">
-                  Because at the end of the day, your success is our success. Your growth is our mission. Your dream is our project.
-                </p>
-              </div>
+                
+                {/* Social Links */}
+                <div className="flex justify-center gap-3">
+                  <motion.a
+                    href="#"
+                    whileHover={{ scale: 1.2, y: -3 }}
+                    className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-accent hover:bg-accent/10 transition-colors"
+                  >
+                    <Linkedin size={18} />
+                  </motion.a>
+                  <motion.a
+                    href="#"
+                    whileHover={{ scale: 1.2, y: -3 }}
+                    className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-accent hover:bg-accent/10 transition-colors"
+                  >
+                    <Github size={18} />
+                  </motion.a>
+                </div>
+              </GlassCard>
             </motion.div>
           </div>
         </div>
       </SectionWrapper>
 
-      {/* Mission & Values */}
+      {/* Founder's Story */}
       <SectionWrapper className="py-24 section-glow">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-              Our <span className="gradient-text">Values</span>
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              To empower businesses with cutting-edge web solutions that don't just meet expectations—they shatter them.
-            </p>
+          <div className="max-w-4xl mx-auto">
+            <ScaleOnScroll>
+              <div className="text-center mb-12">
+                <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+                  From Struggle to <span className="gradient-text">Success</span>
+                </h2>
+              </div>
+            </ScaleOnScroll>
+            
+            <ScaleOnScroll>
+              <GlassCard className="relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+                
+                <div className="relative z-10 space-y-6 text-muted-foreground leading-relaxed text-lg">
+                  <motion.p
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    My journey with web development started in a small room with a second-hand laptop and a dream that seemed impossible.
+                  </motion.p>
+                  <motion.p
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 }}
+                    viewport={{ once: true }}
+                  >
+                    I was earning just 20,000 rupees a month, barely enough to get by. But every time I built a website for someone, watching their face light up when they saw their idea come to life—that was everything.
+                  </motion.p>
+                  <motion.p
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                    viewport={{ once: true }}
+                  >
+                    I saw talented entrepreneurs with brilliant ideas being held back by terrible websites. I saw small businesses losing customers to competitors not because they were better, but because their websites LOOKED better.
+                  </motion.p>
+                  <motion.p
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4 }}
+                    viewport={{ once: true }}
+                    className="text-foreground font-medium"
+                  >
+                    That's when I realized: everyone deserves a website that matches their ambition.
+                  </motion.p>
+                  <motion.p
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.5 }}
+                    viewport={{ once: true }}
+                  >
+                    NEXORA was born from that belief. Today, we've helped over 50 businesses transform their online presence. Every project we take on carries the same care and dedication as if it were our own business.
+                  </motion.p>
+                  <motion.p
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.6 }}
+                    viewport={{ once: true }}
+                    className="text-primary font-semibold text-xl"
+                  >
+                    Because at the end of the day, your success is our success. Your growth is our mission. Your dream is our project.
+                  </motion.p>
+                </div>
+              </GlassCard>
+            </ScaleOnScroll>
           </div>
+        </div>
+      </SectionWrapper>
+
+      {/* Mission & Values */}
+      <SectionWrapper className="py-24">
+        <div className="container mx-auto px-4 lg:px-8">
+          <ScaleOnScroll>
+            <div className="text-center mb-16">
+              <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
+                Our <span className="gradient-text">Values</span>
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                To empower businesses with cutting-edge web solutions that don't just meet expectations—they shatter them.
+              </p>
+            </div>
+          </ScaleOnScroll>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
-              <motion.div
-                key={value.title}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
-                viewport={{ once: true }}
-              >
-                <GlassCard className="h-full text-center">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mx-auto mb-6">
-                    <value.icon className="w-7 h-7 text-primary-foreground" />
-                  </div>
-                  <h3 className="font-display text-xl font-semibold mb-3 text-foreground">{value.title}</h3>
-                  <p className="text-muted-foreground text-sm">{value.description}</p>
-                </GlassCard>
-              </motion.div>
+              <ScaleOnScroll key={value.title}>
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.15 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -10 }}
+                >
+                  <GlassCard className="h-full text-center group">
+                    <motion.div 
+                      whileHover={{ scale: 1.1, rotate: 10 }}
+                      className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mx-auto mb-6 shadow-lg"
+                    >
+                      <value.icon className="w-8 h-8 text-primary-foreground" />
+                    </motion.div>
+                    <h3 className="font-display text-xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">{value.title}</h3>
+                    <p className="text-muted-foreground text-sm">{value.description}</p>
+                  </GlassCard>
+                </motion.div>
+              </ScaleOnScroll>
             ))}
           </div>
         </div>
       </SectionWrapper>
 
       {/* Skills Section */}
-      <SectionWrapper className="py-24">
+      <SectionWrapper className="py-24 section-glow">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
-            <div>
-              <h2 className="font-display text-3xl md:text-4xl font-bold mb-8">
-                Skills & <span className="gradient-text">Expertise</span>
-              </h2>
-              <div className="space-y-6">
-                {skills.map((skill, index) => (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="flex justify-between mb-2">
-                      <span className="text-foreground font-medium">{skill.name}</span>
-                      <span className="text-primary">{skill.level}%</span>
-                    </div>
-                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
-                        viewport={{ once: true }}
-                        className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
-                      />
-                    </div>
-                  </motion.div>
-                ))}
+            <ScaleOnScroll>
+              <div>
+                <h2 className="font-display text-3xl md:text-4xl font-bold mb-8">
+                  Skills & <span className="gradient-text">Expertise</span>
+                </h2>
+                <div className="space-y-6">
+                  {skills.map((skill, index) => (
+                    <motion.div
+                      key={skill.name}
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="flex justify-between mb-2">
+                        <span className="text-foreground font-medium">{skill.name}</span>
+                        <span className="text-primary font-semibold">{skill.level}%</span>
+                      </div>
+                      <div className="h-3 bg-secondary rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${skill.level}%` }}
+                          transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
+                          viewport={{ once: true }}
+                          className="h-full bg-gradient-to-r from-primary to-accent rounded-full relative"
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-gradient-shift" />
+                        </motion.div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-            </div>
+            </ScaleOnScroll>
             
             {/* Why Choose NEXORA */}
-            <div>
-              <h2 className="font-display text-3xl md:text-4xl font-bold mb-8">
-                Why Choose <span className="gradient-text">NEXORA?</span>
-              </h2>
-              <div className="grid gap-6">
-                <GlassCard>
-                  <h3 className="font-display text-lg font-semibold text-destructive mb-4 flex items-center gap-2">
-                    <X className="w-5 h-5" /> Typical Agencies
-                  </h3>
-                  <ul className="space-y-2">
-                    {typicalAgencies.map((item) => (
-                      <li key={item} className="flex items-center gap-2 text-muted-foreground text-sm">
-                        <X className="w-4 h-4 text-destructive shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </GlassCard>
-                
-                <GlassCard className="border-primary/30">
-                  <h3 className="font-display text-lg font-semibold text-primary mb-4 flex items-center gap-2">
-                    <Check className="w-5 h-5" /> NEXORA Difference
-                  </h3>
-                  <ul className="space-y-2">
-                    {nexoraDifference.map((item) => (
-                      <li key={item} className="flex items-center gap-2 text-muted-foreground text-sm">
-                        <Check className="w-4 h-4 text-primary shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </GlassCard>
+            <ScaleOnScroll>
+              <div>
+                <h2 className="font-display text-3xl md:text-4xl font-bold mb-8">
+                  Why Choose <span className="gradient-text">NEXORA?</span>
+                </h2>
+                <div className="grid gap-6">
+                  <motion.div
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                  >
+                    <GlassCard className="border-destructive/20">
+                      <h3 className="font-display text-lg font-semibold text-destructive mb-4 flex items-center gap-2">
+                        <X className="w-5 h-5" /> Typical Agencies
+                      </h3>
+                      <ul className="space-y-3">
+                        {typicalAgencies.map((item) => (
+                          <motion.li 
+                            key={item} 
+                            className="flex items-center gap-3 text-muted-foreground text-sm"
+                            whileHover={{ x: 5 }}
+                          >
+                            <X className="w-4 h-4 text-destructive shrink-0" />
+                            {item}
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </GlassCard>
+                  </motion.div>
+                  
+                  <motion.div
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    viewport={{ once: true }}
+                  >
+                    <GlassCard className="border-primary/30">
+                      <h3 className="font-display text-lg font-semibold text-primary mb-4 flex items-center gap-2">
+                        <Check className="w-5 h-5" /> NEXORA Difference
+                      </h3>
+                      <ul className="space-y-3">
+                        {nexoraDifference.map((item) => (
+                          <motion.li 
+                            key={item} 
+                            className="flex items-center gap-3 text-muted-foreground text-sm"
+                            whileHover={{ x: 5 }}
+                          >
+                            <Check className="w-4 h-4 text-primary shrink-0" />
+                            {item}
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </GlassCard>
+                  </motion.div>
+                </div>
               </div>
-            </div>
+            </ScaleOnScroll>
           </div>
         </div>
       </SectionWrapper>
@@ -246,20 +466,29 @@ const AboutPage = () => {
       {/* CTA Section */}
       <SectionWrapper className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
-          <GlassCard className="text-center py-16 px-8">
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-              Ready to Join Our <span className="gradient-text">Success Stories?</span>
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-              Let's work together and create something extraordinary.
-            </p>
-            <Button variant="hero" size="xl" asChild>
-              <Link to="/contact">
-                Let's Work Together
-                <ArrowRight className="ml-2" size={20} />
-              </Link>
-            </Button>
-          </GlassCard>
+          <ScaleOnScroll>
+            <GlassCard className="text-center py-16 px-8 relative overflow-hidden">
+              <div className="absolute inset-0 opacity-30">
+                <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl" />
+                <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent/20 rounded-full blur-3xl" />
+              </div>
+              
+              <div className="relative z-10">
+                <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+                  Ready to Join Our <span className="gradient-text">Success Stories?</span>
+                </h2>
+                <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
+                  Let's work together and create something extraordinary.
+                </p>
+                <Button variant="hero" size="xl" asChild>
+                  <Link to="/contact">
+                    Let's Work Together
+                    <ArrowRight className="ml-2" size={20} />
+                  </Link>
+                </Button>
+              </div>
+            </GlassCard>
+          </ScaleOnScroll>
         </div>
       </SectionWrapper>
     </div>
