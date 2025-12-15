@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
+import NexoraLogo from "@/assets/nexora-logo.svg";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -44,11 +45,15 @@ const Navbar = () => {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <span className="text-primary-foreground font-display font-bold text-lg">N</span>
-            </div>
-            <span className="font-display font-bold text-xl text-foreground">NEXORA</span>
+          <Link to="/" className="flex items-center gap-2 group">
+            <motion.img 
+              src={NexoraLogo} 
+              alt="NEXORA" 
+              className="w-10 h-10"
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.6 }}
+            />
+            <span className="font-display font-bold text-xl text-foreground group-hover:text-primary transition-colors">NEXORA</span>
           </Link>
 
           {/* Desktop Navigation */}
