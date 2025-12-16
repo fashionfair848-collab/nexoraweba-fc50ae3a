@@ -4,7 +4,7 @@ import { ArrowRight, Flame, Sparkles, Handshake, Zap, X, Check, Linkedin, Github
 import { Button } from "@/components/ui/button";
 import GlassCard from "@/components/ui/GlassCard";
 import SectionWrapper from "@/components/ui/SectionWrapper";
-import ScaleOnScroll from "@/components/ui/ScaleOnScroll";
+import FadeInOnView from "@/components/ui/FadeInOnView";
 
 const values = [
   {
@@ -120,7 +120,7 @@ const AboutPage = () => {
       {/* Team Section */}
       <SectionWrapper className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
-          <ScaleOnScroll>
+          <FadeInOnView>
             <div className="text-center mb-16">
               <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
                 Meet the <span className="gradient-text">Team</span>
@@ -129,7 +129,7 @@ const AboutPage = () => {
                 The passionate minds behind NEXORA's success
               </p>
             </div>
-          </ScaleOnScroll>
+          </FadeInOnView>
 
           <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {/* Founder - Ali Haider (Large) */}
@@ -250,15 +250,15 @@ const AboutPage = () => {
       <SectionWrapper className="py-24 section-glow">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <ScaleOnScroll>
+            <FadeInOnView>
               <div className="text-center mb-12">
                 <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
                   From Struggle to <span className="gradient-text">Success</span>
                 </h2>
               </div>
-            </ScaleOnScroll>
+            </FadeInOnView>
             
-            <ScaleOnScroll>
+            <FadeInOnView>
               <GlassCard className="relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
                 
@@ -315,7 +315,7 @@ const AboutPage = () => {
                   </motion.p>
                 </div>
               </GlassCard>
-            </ScaleOnScroll>
+            </FadeInOnView>
           </div>
         </div>
       </SectionWrapper>
@@ -323,7 +323,7 @@ const AboutPage = () => {
       {/* Mission & Values */}
       <SectionWrapper className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
-          <ScaleOnScroll>
+          <FadeInOnView>
             <div className="text-center mb-16">
               <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
                 Our <span className="gradient-text">Values</span>
@@ -332,30 +332,19 @@ const AboutPage = () => {
                 To empower businesses with cutting-edge web solutions that don't just meet expectations—they shatter them.
               </p>
             </div>
-          </ScaleOnScroll>
+          </FadeInOnView>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
-              <ScaleOnScroll key={value.title}>
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.15 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -10 }}
-                >
-                  <GlassCard className="h-full text-center group">
-                    <motion.div 
-                      whileHover={{ scale: 1.1, rotate: 10 }}
-                      className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mx-auto mb-6 shadow-lg"
-                    >
-                      <value.icon className="w-8 h-8 text-primary-foreground" />
-                    </motion.div>
-                    <h3 className="font-display text-xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">{value.title}</h3>
-                    <p className="text-muted-foreground text-sm">{value.description}</p>
-                  </GlassCard>
-                </motion.div>
-              </ScaleOnScroll>
+              <FadeInOnView key={value.title} delay={index * 0.1}>
+                <GlassCard className="h-full text-center group hover:-translate-y-2 transition-transform duration-300">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
+                    <value.icon className="w-8 h-8 text-primary-foreground" />
+                  </div>
+                  <h3 className="font-display text-xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">{value.title}</h3>
+                  <p className="text-muted-foreground text-sm">{value.description}</p>
+                </GlassCard>
+              </FadeInOnView>
             ))}
           </div>
         </div>
@@ -365,7 +354,7 @@ const AboutPage = () => {
       <SectionWrapper className="py-24 section-glow">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
-            <ScaleOnScroll>
+            <FadeInOnView>
               <div>
                 <h2 className="font-display text-3xl md:text-4xl font-bold mb-8">
                   Skills & <span className="gradient-text">Expertise</span>
@@ -391,74 +380,58 @@ const AboutPage = () => {
                           viewport={{ once: true }}
                           className="h-full bg-gradient-to-r from-primary to-accent rounded-full relative"
                         >
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-gradient-shift" />
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                         </motion.div>
                       </div>
                     </motion.div>
                   ))}
                 </div>
               </div>
-            </ScaleOnScroll>
+            </FadeInOnView>
             
             {/* Why Choose NEXORA */}
-            <ScaleOnScroll>
+            <FadeInOnView delay={0.2}>
               <div>
                 <h2 className="font-display text-3xl md:text-4xl font-bold mb-8">
                   Why Choose <span className="gradient-text">NEXORA?</span>
                 </h2>
                 <div className="grid gap-6">
-                  <motion.div
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5 }}
-                    viewport={{ once: true }}
-                  >
-                    <GlassCard className="border-destructive/20">
-                      <h3 className="font-display text-lg font-semibold text-destructive mb-4 flex items-center gap-2">
-                        <X className="w-5 h-5" /> Typical Agencies
-                      </h3>
-                      <ul className="space-y-3">
-                        {typicalAgencies.map((item) => (
-                          <motion.li 
-                            key={item} 
-                            className="flex items-center gap-3 text-muted-foreground text-sm"
-                            whileHover={{ x: 5 }}
-                          >
-                            <X className="w-4 h-4 text-destructive shrink-0" />
-                            {item}
-                          </motion.li>
-                        ))}
-                      </ul>
-                    </GlassCard>
-                  </motion.div>
+                  <GlassCard className="border-destructive/20">
+                    <h3 className="font-display text-lg font-semibold text-destructive mb-4 flex items-center gap-2">
+                      <X className="w-5 h-5" /> Typical Agencies
+                    </h3>
+                    <ul className="space-y-3">
+                      {typicalAgencies.map((item) => (
+                        <li 
+                          key={item} 
+                          className="flex items-center gap-3 text-muted-foreground text-sm"
+                        >
+                          <X className="w-4 h-4 text-destructive shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </GlassCard>
                   
-                  <motion.div
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    viewport={{ once: true }}
-                  >
-                    <GlassCard className="border-primary/30">
-                      <h3 className="font-display text-lg font-semibold text-primary mb-4 flex items-center gap-2">
-                        <Check className="w-5 h-5" /> NEXORA Difference
-                      </h3>
-                      <ul className="space-y-3">
-                        {nexoraDifference.map((item) => (
-                          <motion.li 
-                            key={item} 
-                            className="flex items-center gap-3 text-muted-foreground text-sm"
-                            whileHover={{ x: 5 }}
-                          >
-                            <Check className="w-4 h-4 text-primary shrink-0" />
-                            {item}
-                          </motion.li>
-                        ))}
-                      </ul>
-                    </GlassCard>
-                  </motion.div>
+                  <GlassCard className="border-primary/30">
+                    <h3 className="font-display text-lg font-semibold text-primary mb-4 flex items-center gap-2">
+                      <Check className="w-5 h-5" /> NEXORA Difference
+                    </h3>
+                    <ul className="space-y-3">
+                      {nexoraDifference.map((item) => (
+                        <li 
+                          key={item} 
+                          className="flex items-center gap-3 text-muted-foreground text-sm"
+                        >
+                          <Check className="w-4 h-4 text-primary shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </GlassCard>
                 </div>
               </div>
-            </ScaleOnScroll>
+            </FadeInOnView>
           </div>
         </div>
       </SectionWrapper>
@@ -466,7 +439,7 @@ const AboutPage = () => {
       {/* CTA Section */}
       <SectionWrapper className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
-          <ScaleOnScroll>
+          <FadeInOnView>
             <GlassCard className="text-center py-16 px-8 relative overflow-hidden">
               <div className="absolute inset-0 opacity-30">
                 <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl" />
@@ -488,7 +461,7 @@ const AboutPage = () => {
                 </Button>
               </div>
             </GlassCard>
-          </ScaleOnScroll>
+          </FadeInOnView>
         </div>
       </SectionWrapper>
     </div>

@@ -5,7 +5,7 @@ import { ArrowRight, ShoppingCart, Zap, Layout, Building, Database, Sparkles } f
 import { Button } from "@/components/ui/button";
 import GlassCard from "@/components/ui/GlassCard";
 import SectionWrapper from "@/components/ui/SectionWrapper";
-import ScaleOnScroll from "@/components/ui/ScaleOnScroll";
+import FadeInOnView from "@/components/ui/FadeInOnView";
 import PortfolioCard from "@/components/ui/PortfolioCard";
 
 const categories = [
@@ -169,13 +169,13 @@ const PortfolioPage = () => {
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {filteredProjects.map((project, index) => (
-                <ScaleOnScroll key={project.id}>
+                <FadeInOnView key={project.id} delay={index * 0.1}>
                   <PortfolioCard
                     project={project}
                     categoryLabel={categories.find((c) => c.id === project.category)?.label || ""}
                     index={index}
                   />
-                </ScaleOnScroll>
+                </FadeInOnView>
               ))}
             </motion.div>
           </AnimatePresence>
@@ -185,7 +185,7 @@ const PortfolioPage = () => {
       {/* CTA Section */}
       <SectionWrapper className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
-          <ScaleOnScroll>
+          <FadeInOnView>
             <GlassCard className="text-center py-16 px-8 relative overflow-hidden">
               <div className="absolute inset-0 opacity-30">
                 <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl" />
@@ -207,7 +207,7 @@ const PortfolioPage = () => {
                 </Button>
               </div>
             </GlassCard>
-          </ScaleOnScroll>
+          </FadeInOnView>
         </div>
       </SectionWrapper>
     </div>
