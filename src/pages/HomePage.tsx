@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import GlassCard from "@/components/ui/GlassCard";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import SectionWrapper from "@/components/ui/SectionWrapper";
-import ScaleOnScroll from "@/components/ui/ScaleOnScroll";
-import HeroCanvas from "@/components/three/HeroCanvas";
+import FadeInOnView from "@/components/ui/FadeInOnView";
+import HeroBackground from "@/components/hero/HeroBackground";
 import { ReactIcon, NodeIcon, MongoIcon, ExpressIcon, NextIcon, TypeScriptIcon, TailwindIcon, ThreeIcon, TechStackItem } from "@/components/icons/TechIcons";
 
 const techStack = [
@@ -91,15 +91,15 @@ const HomePage = () => {
   return (
     <div className="min-h-screen overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">
-        <HeroCanvas />
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <HeroBackground />
         
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
               <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
                 Transform Your Vision Into{" "}
@@ -110,7 +110,7 @@ const HomePage = () => {
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
               className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed"
             >
               We're not just developers—we're digital architects who turn your wildest ideas into pixel-perfect, high-converting web experiences that your competitors will envy.
@@ -119,7 +119,7 @@ const HomePage = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
               <Button variant="hero" size="xl" asChild>
@@ -139,7 +139,7 @@ const HomePage = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
+          transition={{ delay: 1.2 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2"
         >
           <motion.div
@@ -158,28 +158,15 @@ const HomePage = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
-              <ScaleOnScroll key={stat.label}>
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -8 }}
-                >
-                  <GlassCard className="text-center group">
-                    <motion.div
-                      whileHover={{ rotate: 360, scale: 1.2 }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      <stat.icon className="w-10 h-10 text-primary mx-auto mb-4 group-hover:text-accent transition-colors" />
-                    </motion.div>
-                    <div className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
-                      <AnimatedCounter end={stat.value} suffix={stat.suffix} />
-                    </div>
-                    <p className="text-muted-foreground text-sm">{stat.label}</p>
-                  </GlassCard>
-                </motion.div>
-              </ScaleOnScroll>
+              <FadeInOnView key={stat.label} delay={index * 0.1}>
+                <GlassCard className="text-center group hover:-translate-y-2 transition-transform duration-300">
+                  <stat.icon className="w-10 h-10 text-primary mx-auto mb-4 group-hover:text-accent transition-colors" />
+                  <div className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
+                    <AnimatedCounter end={stat.value} suffix={stat.suffix} />
+                  </div>
+                  <p className="text-muted-foreground text-sm">{stat.label}</p>
+                </GlassCard>
+              </FadeInOnView>
             ))}
           </div>
         </div>
@@ -188,84 +175,63 @@ const HomePage = () => {
       {/* Services Preview */}
       <SectionWrapper className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
-          <ScaleOnScroll>
+          <FadeInOnView>
             <div className="text-center mb-16">
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="font-display text-3xl md:text-5xl font-bold mb-4"
-              >
+              <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
                 What We <span className="gradient-text">Craft</span>
-              </motion.h2>
+              </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 Premium digital solutions tailored to elevate your business
               </p>
             </div>
-          </ScaleOnScroll>
+          </FadeInOnView>
           
           <div className="grid md:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <ScaleOnScroll key={service.title}>
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.15 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -10 }}
-                  className="h-full"
-                >
-                  <GlassCard className="h-full group">
-                    <motion.div 
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-6 shadow-lg"
-                    >
-                      <service.icon className="w-8 h-8 text-primary-foreground" />
-                    </motion.div>
-                    <h3 className="font-display text-xl font-semibold mb-4 text-foreground group-hover:text-primary transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
-                      {service.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {service.features.map((feature) => (
-                        <span 
-                          key={feature}
-                          className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary flex items-center gap-1"
-                        >
-                          <CheckCircle size={12} />
-                          {feature}
-                        </span>
-                      ))}
-                    </div>
-                  </GlassCard>
-                </motion.div>
-              </ScaleOnScroll>
+              <FadeInOnView key={service.title} delay={index * 0.15}>
+                <GlassCard className="h-full group hover:-translate-y-2 transition-transform duration-300">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform">
+                    <service.icon className="w-8 h-8 text-primary-foreground" />
+                  </div>
+                  <h3 className="font-display text-xl font-semibold mb-4 text-foreground group-hover:text-primary transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    {service.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {service.features.map((feature) => (
+                      <span 
+                        key={feature}
+                        className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary flex items-center gap-1"
+                      >
+                        <CheckCircle size={12} />
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                </GlassCard>
+              </FadeInOnView>
             ))}
           </div>
           
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mt-12"
-          >
-            <Button variant="outline" size="lg" asChild className="group">
-              <Link to="/services">
-                Explore All Services
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-              </Link>
-            </Button>
-          </motion.div>
+          <FadeInOnView delay={0.5}>
+            <div className="text-center mt-12">
+              <Button variant="outline" size="lg" asChild className="group">
+                <Link to="/services">
+                  Explore All Services
+                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+                </Link>
+              </Button>
+            </div>
+          </FadeInOnView>
         </div>
       </SectionWrapper>
 
       {/* Team Section */}
       <SectionWrapper className="py-24 section-glow">
         <div className="container mx-auto px-4 lg:px-8">
-          <ScaleOnScroll>
+          <FadeInOnView>
             <div className="text-center mb-16">
               <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
                 Meet Your <span className="gradient-text">Digital Partners</span>
@@ -274,40 +240,24 @@ const HomePage = () => {
                 The passionate team behind NEXORA's success
               </p>
             </div>
-          </ScaleOnScroll>
+          </FadeInOnView>
           
           <div className="grid lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {/* Founder - Ali Haider (Large) */}
-            <motion.div
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="lg:col-span-2"
-            >
+            <FadeInOnView className="lg:col-span-2">
               <GlassCard className="h-full group overflow-hidden py-10">
                 <div className="flex flex-col md:flex-row items-center gap-8">
-                  {/* Image */}
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="relative"
-                  >
-                    <div className="w-40 h-40 rounded-full bg-gradient-to-br from-primary via-accent to-primary p-1">
+                  <div className="relative">
+                    <div className="w-40 h-40 rounded-full bg-gradient-to-br from-primary via-accent to-primary p-1 group-hover:scale-105 transition-transform">
                       <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
                         <span className="text-5xl font-display font-bold text-primary">AH</span>
                       </div>
                     </div>
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.3 }}
-                      className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-primary to-accent rounded-full"
-                    >
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-primary to-accent rounded-full">
                       <span className="text-xs font-semibold text-primary-foreground">Founder</span>
-                    </motion.div>
-                  </motion.div>
+                    </div>
+                  </div>
                   
-                  {/* Info */}
                   <div className="text-center md:text-left flex-1">
                     <h3 className="font-display text-2xl font-bold text-foreground mb-1">Ali Haider</h3>
                     <p className="text-primary font-medium mb-4">CEO & Lead Developer</p>
@@ -317,63 +267,51 @@ const HomePage = () => {
                   </div>
                 </div>
               </GlassCard>
-            </motion.div>
+            </FadeInOnView>
 
             {/* Partner - Usman (Small) */}
-            <motion.div
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              viewport={{ once: true }}
-            >
+            <FadeInOnView delay={0.15}>
               <GlassCard className="h-full text-center group py-10">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="relative mx-auto w-28 h-28 mb-6"
-                >
+                <div className="relative mx-auto w-28 h-28 mb-6 group-hover:scale-105 transition-transform">
                   <div className="w-full h-full rounded-full bg-gradient-to-br from-accent via-primary to-accent p-1">
                     <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
                       <span className="text-3xl font-display font-bold text-accent">U</span>
                     </div>
                   </div>
-                </motion.div>
+                </div>
                 <h3 className="font-display text-xl font-bold text-foreground mb-1">Usman</h3>
                 <p className="text-accent font-medium mb-3">Partner & Developer</p>
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   Bringing technical expertise and creative solutions to every project we build together.
                 </p>
               </GlassCard>
-            </motion.div>
+            </FadeInOnView>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="text-center mt-10"
-          >
-            <Button variant="glow" asChild>
-              <Link to="/about">
-                Read Our Full Story
-                <ArrowRight className="ml-2" size={18} />
-              </Link>
-            </Button>
-          </motion.div>
+          <FadeInOnView delay={0.3}>
+            <div className="text-center mt-10">
+              <Button variant="glow" asChild>
+                <Link to="/about">
+                  Read Our Full Story
+                  <ArrowRight className="ml-2" size={18} />
+                </Link>
+              </Button>
+            </div>
+          </FadeInOnView>
         </div>
       </SectionWrapper>
 
       {/* Tech Stack */}
       <SectionWrapper className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
-          <ScaleOnScroll>
+          <FadeInOnView>
             <div className="text-center mb-16">
               <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
                 Powered By <span className="gradient-text">Excellence</span>
               </h2>
               <p className="text-muted-foreground">Cutting-edge technologies for cutting-edge solutions</p>
             </div>
-          </ScaleOnScroll>
+          </FadeInOnView>
           
           <div className="flex flex-wrap justify-center gap-6">
             {techStack.map((tech, index) => (
@@ -386,102 +324,67 @@ const HomePage = () => {
       {/* Testimonials */}
       <SectionWrapper className="py-24 section-glow">
         <div className="container mx-auto px-4 lg:px-8">
-          <ScaleOnScroll>
+          <FadeInOnView>
             <div className="text-center mb-16">
               <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
                 Don't Just Take <span className="gradient-text">Our Word</span>
               </h2>
               <p className="text-muted-foreground">What our clients say about working with us</p>
             </div>
-          </ScaleOnScroll>
+          </FadeInOnView>
           
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <ScaleOnScroll key={testimonial.name}>
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.15 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -8 }}
-                >
-                  <GlassCard className="h-full flex flex-col group">
-                    <div className="flex gap-1 mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ opacity: 0, scale: 0 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: 0.5 + i * 0.1 }}
-                          viewport={{ once: true }}
-                        >
-                          <Star className="w-5 h-5 fill-primary text-primary" />
-                        </motion.div>
-                      ))}
+              <FadeInOnView key={testimonial.name} delay={index * 0.15}>
+                <GlassCard className="h-full flex flex-col group hover:-translate-y-2 transition-transform duration-300">
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} size={18} className="text-yellow-500 fill-yellow-500" />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground mb-6 flex-grow leading-relaxed italic">
+                    "{testimonial.text}"
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <span className="text-sm font-semibold text-primary-foreground">{testimonial.avatar}</span>
                     </div>
-                    <p className="text-muted-foreground leading-relaxed mb-6 flex-1 italic">
-                      "{testimonial.text}"
-                    </p>
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                        <span className="text-sm font-bold text-primary-foreground">{testimonial.avatar}</span>
-                      </div>
-                      <div>
-                        <p className="font-semibold text-foreground">{testimonial.name}</p>
-                        <p className="text-sm text-muted-foreground">{testimonial.company}</p>
-                      </div>
+                    <div>
+                      <p className="font-semibold text-foreground">{testimonial.name}</p>
+                      <p className="text-sm text-muted-foreground">{testimonial.company}</p>
                     </div>
-                  </GlassCard>
-                </motion.div>
-              </ScaleOnScroll>
+                  </div>
+                </GlassCard>
+              </FadeInOnView>
             ))}
           </div>
         </div>
       </SectionWrapper>
 
-      {/* Final CTA */}
+      {/* CTA Section */}
       <SectionWrapper className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
-          <ScaleOnScroll>
-            <GlassCard className="text-center py-16 px-8 relative overflow-hidden">
-              {/* Background decoration */}
-              <div className="absolute inset-0 opacity-30">
-                <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent/20 rounded-full blur-3xl" />
-              </div>
-              
-              <div className="relative z-10">
-                <motion.h2 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="font-display text-3xl md:text-5xl font-bold mb-4"
-                >
-                  Your Dream Website Is{" "}
-                  <span className="gradient-text">Just One Click Away</span>
-                </motion.h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-                  Free consultation. No pressure. Just honest advice about what will work best for YOUR business.
-                </p>
+          <FadeInOnView>
+            <GlassCard className="text-center py-16 px-8">
+              <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
+                Ready to <span className="gradient-text">Stand Out</span>?
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
+                Let's transform your digital presence together. Your competitors won't know what hit them.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button variant="hero" size="xl" asChild>
                   <Link to="/contact">
-                    Book Your Free Consultation
+                    Start Your Project
                     <ArrowRight className="ml-2" size={20} />
                   </Link>
                 </Button>
-                <div className="flex flex-wrap items-center justify-center gap-6 mt-8 text-sm text-muted-foreground">
-                  <span className="flex items-center gap-2">
-                    <CheckCircle size={16} className="text-primary" />
-                    No credit card required
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <CheckCircle size={16} className="text-primary" />
-                    Response within 4 hours
-                  </span>
-                </div>
+                <Button variant="outline" size="xl" asChild>
+                  <Link to="/services">Explore Services</Link>
+                </Button>
               </div>
             </GlassCard>
-          </ScaleOnScroll>
+          </FadeInOnView>
         </div>
       </SectionWrapper>
     </div>
