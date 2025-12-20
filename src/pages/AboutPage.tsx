@@ -69,9 +69,31 @@ const team = [
   },
   {
     name: "Usman",
-    role: "Partner & Developer",
+    role: "Senior Developer",
     bio: "Technical expertise meets creative problem-solving. Building robust solutions that scale with your business.",
     initials: "U",
+    isFounder: false,
+    socials: {
+      linkedin: "#",
+      github: "#",
+    },
+  },
+  {
+    name: "Sarah Ahmed",
+    role: "UI/UX Designer",
+    bio: "Crafting intuitive and beautiful user experiences. Every interface is designed to delight users and drive conversions.",
+    initials: "SA",
+    isFounder: false,
+    socials: {
+      linkedin: "#",
+      twitter: "#",
+    },
+  },
+  {
+    name: "Hassan Khan",
+    role: "Backend Developer",
+    bio: "Building the invisible architecture that powers your applications. Scalable, secure, and lightning-fast solutions.",
+    initials: "HK",
     isFounder: false,
     socials: {
       linkedin: "#",
@@ -131,17 +153,16 @@ const AboutPage = () => {
             </div>
           </FadeInOnView>
 
-          <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {/* Founder - Ali Haider (Large) */}
+          {/* Founder - Ali Haider (Full Width) */}
+          <div className="max-w-3xl mx-auto mb-12">
             <motion.div
               initial={{ opacity: 0, y: 50, scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="lg:col-span-2"
             >
-              <GlassCard className="h-full group overflow-hidden">
-                <div className="flex flex-col md:flex-row items-center gap-8 py-6">
+              <GlassCard className="group overflow-hidden py-10">
+                <div className="flex flex-col md:flex-row items-center gap-8">
                   {/* Image */}
                   <motion.div
                     whileHover={{ scale: 1.05 }}
@@ -198,50 +219,68 @@ const AboutPage = () => {
                 </div>
               </GlassCard>
             </motion.div>
+          </div>
 
-            {/* Partner - Usman (Smaller) */}
-            <motion.div
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              viewport={{ once: true }}
-            >
-              <GlassCard className="h-full text-center group py-8">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="relative mx-auto w-32 h-32 mb-6"
-                >
-                  <div className="w-full h-full rounded-full bg-gradient-to-br from-accent via-primary to-accent p-1">
-                    <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
-                      <span className="text-4xl font-display font-bold text-accent">U</span>
+          {/* Team Members Grid */}
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {team.slice(1).map((member, index) => (
+              <motion.div
+                key={member.name}
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <GlassCard className="h-full text-center group py-8">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    className="relative mx-auto w-28 h-28 mb-6"
+                  >
+                    <div className="w-full h-full rounded-full bg-gradient-to-br from-accent via-primary to-accent p-1">
+                      <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
+                        <span className="text-3xl font-display font-bold text-accent">{member.initials}</span>
+                      </div>
                     </div>
+                  </motion.div>
+                  <h3 className="font-display text-xl font-bold text-foreground mb-1">{member.name}</h3>
+                  <p className="text-accent font-medium mb-4">{member.role}</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6 px-2">
+                    {member.bio}
+                  </p>
+                  
+                  {/* Social Links */}
+                  <div className="flex justify-center gap-3">
+                    {member.socials.linkedin && (
+                      <motion.a
+                        href="#"
+                        whileHover={{ scale: 1.2, y: -3 }}
+                        className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-accent hover:bg-accent/10 transition-colors"
+                      >
+                        <Linkedin size={18} />
+                      </motion.a>
+                    )}
+                    {member.socials.github && (
+                      <motion.a
+                        href="#"
+                        whileHover={{ scale: 1.2, y: -3 }}
+                        className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-accent hover:bg-accent/10 transition-colors"
+                      >
+                        <Github size={18} />
+                      </motion.a>
+                    )}
+                    {member.socials.twitter && (
+                      <motion.a
+                        href="#"
+                        whileHover={{ scale: 1.2, y: -3 }}
+                        className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-accent hover:bg-accent/10 transition-colors"
+                      >
+                        <Twitter size={18} />
+                      </motion.a>
+                    )}
                   </div>
-                </motion.div>
-                <h3 className="font-display text-xl font-bold text-foreground mb-1">Usman</h3>
-                <p className="text-accent font-medium mb-4">Partner & Developer</p>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                  {team[1].bio}
-                </p>
-                
-                {/* Social Links */}
-                <div className="flex justify-center gap-3">
-                  <motion.a
-                    href="#"
-                    whileHover={{ scale: 1.2, y: -3 }}
-                    className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-accent hover:bg-accent/10 transition-colors"
-                  >
-                    <Linkedin size={18} />
-                  </motion.a>
-                  <motion.a
-                    href="#"
-                    whileHover={{ scale: 1.2, y: -3 }}
-                    className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-accent hover:bg-accent/10 transition-colors"
-                  >
-                    <Github size={18} />
-                  </motion.a>
-                </div>
-              </GlassCard>
-            </motion.div>
+                </GlassCard>
+              </motion.div>
+            ))}
           </div>
         </div>
       </SectionWrapper>
