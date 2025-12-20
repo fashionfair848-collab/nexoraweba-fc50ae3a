@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowDown, Rocket, Users, Heart, Shield, Code, Zap, Layers, Star, CheckCircle, TrendingUp, Clock, Award, Target, Sparkles, Globe, BarChart3, MessageSquare } from "lucide-react";
+import { ArrowRight, ArrowDown, Rocket, Users, Heart, Shield, Code, Zap, Layers, Star, CheckCircle, TrendingUp, Clock, Award, Target, Sparkles, Globe, BarChart3, MessageSquare, Linkedin, Github, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GlassCard from "@/components/ui/GlassCard";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import FadeInOnView from "@/components/ui/FadeInOnView";
 import HeroBackground from "@/components/hero/HeroBackground";
+import HeroHexagon from "@/components/hero/HeroHexagon";
 import { ReactIcon, NodeIcon, MongoIcon, ExpressIcon, NextIcon, TypeScriptIcon, TailwindIcon, ThreeIcon, TechStackItem } from "@/components/icons/TechIcons";
-
 const techStack = [
   { name: "React", icon: <ReactIcon /> },
   { name: "Node.js", icon: <NodeIcon /> },
@@ -110,75 +110,88 @@ const HomePage = () => {
         <HeroBackground />
         
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-6"
-            >
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
-                <Sparkles size={16} />
-                Premium Web Development Agency
-              </span>
-            </motion.div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="text-center lg:text-left order-2 lg:order-1">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mb-6"
+              >
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
+                  <Sparkles size={16} />
+                  Premium Web Development Agency
+                </span>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                  Transform Your Vision Into{" "}
+                  <span className="gradient-text">Digital Reality</span>
+                </h1>
+              </motion.div>
+              
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-lg md:text-xl text-muted-foreground mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+              >
+                We're not just developers—we're digital architects who turn your wildest ideas into pixel-perfect, high-converting web experiences.
+              </motion.p>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+              >
+                <Button variant="hero" size="xl" asChild>
+                  <Link to="/contact">
+                    Start Your Project
+                    <ArrowRight className="ml-2" size={20} />
+                  </Link>
+                </Button>
+                <Button variant="hero-outline" size="xl" asChild>
+                  <Link to="/portfolio">View Our Magic</Link>
+                </Button>
+              </motion.div>
+              
+              {/* Trust badges */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-muted-foreground text-sm"
+              >
+                <div className="flex items-center gap-2">
+                  <CheckCircle size={16} className="text-primary" />
+                  <span>50+ Projects</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle size={16} className="text-primary" />
+                  <span>100% Satisfaction</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle size={16} className="text-primary" />
+                  <span>24/7 Support</span>
+                </div>
+              </motion.div>
+            </div>
             
+            {/* Right - 3D Hexagon */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex justify-center lg:justify-end order-1 lg:order-2"
             >
-              <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                Transform Your Vision Into{" "}
-                <span className="gradient-text">Digital Reality</span>
-              </h1>
-            </motion.div>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed"
-            >
-              We're not just developers—we're digital architects who turn your wildest ideas into pixel-perfect, high-converting web experiences that your competitors will envy.
-            </motion.p>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            >
-              <Button variant="hero" size="xl" asChild>
-                <Link to="/contact">
-                  Start Your Project
-                  <ArrowRight className="ml-2" size={20} />
-                </Link>
-              </Button>
-              <Button variant="hero-outline" size="xl" asChild>
-                <Link to="/portfolio">View Our Magic</Link>
-              </Button>
-            </motion.div>
-            
-            {/* Trust badges */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="mt-12 flex flex-wrap items-center justify-center gap-6 text-muted-foreground text-sm"
-            >
-              <div className="flex items-center gap-2">
-                <CheckCircle size={16} className="text-primary" />
-                <span>50+ Projects Delivered</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle size={16} className="text-primary" />
-                <span>100% Client Satisfaction</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle size={16} className="text-primary" />
-                <span>24/7 Support</span>
-              </div>
+              <HeroHexagon />
             </motion.div>
           </div>
         </div>
@@ -187,16 +200,16 @@ const HomePage = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+          transition={{ delay: 1.5 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
           <motion.div
-            animate={{ y: [0, 10, 0] }}
+            animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
             className="flex flex-col items-center gap-2 text-muted-foreground"
           >
-            <span className="text-sm">Scroll to explore</span>
-            <ArrowDown size={20} />
+            <span className="text-xs">Scroll to explore</span>
+            <ArrowDown size={18} />
           </motion.div>
         </motion.div>
       </section>
@@ -404,76 +417,83 @@ const HomePage = () => {
         </div>
       </SectionWrapper>
 
-      {/* Team Section */}
+      {/* Founder Section */}
       <SectionWrapper className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <FadeInOnView>
             <div className="text-center mb-16">
               <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-                Meet Your <span className="gradient-text">Digital Partners</span>
+                Meet Your <span className="gradient-text">Digital Partner</span>
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                The passionate team behind NEXORA's success
+                The visionary founder behind NEXORA's success
               </p>
             </div>
           </FadeInOnView>
           
-          <div className="grid lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {/* Founder - Ali Haider (Large) */}
-            <FadeInOnView className="lg:col-span-2">
-              <GlassCard className="h-full group overflow-hidden py-10">
-                <div className="flex flex-col md:flex-row items-center gap-8">
-                  <div className="relative">
-                    <div className="w-40 h-40 rounded-full bg-gradient-to-br from-primary via-accent to-primary p-1 group-hover:scale-105 transition-transform">
+          <div className="max-w-3xl mx-auto">
+            {/* Founder - Ali Haider */}
+            <FadeInOnView>
+              <GlassCard className="group overflow-hidden py-12 px-8">
+                <div className="flex flex-col md:flex-row items-center gap-10">
+                  <div className="relative shrink-0">
+                    <div className="w-44 h-44 rounded-full bg-gradient-to-br from-primary via-accent to-primary p-1 group-hover:scale-105 transition-transform duration-300">
                       <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
                         <span className="text-5xl font-display font-bold text-primary">AH</span>
                       </div>
                     </div>
-                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-primary to-accent rounded-full">
-                      <span className="text-xs font-semibold text-primary-foreground">Founder</span>
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-5 py-1.5 bg-gradient-to-r from-primary to-accent rounded-full shadow-lg">
+                      <span className="text-xs font-semibold text-primary-foreground whitespace-nowrap">Founder & Owner</span>
                     </div>
                   </div>
                   
                   <div className="text-center md:text-left flex-1">
-                    <h3 className="font-display text-2xl font-bold text-foreground mb-1">Ali Haider</h3>
-                    <p className="text-primary font-medium mb-4">CEO & Lead Developer</p>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Started with a dream and a second-hand laptop. Today, leading NEXORA to transform businesses with cutting-edge web solutions. Your success is my mission.
+                    <h3 className="font-display text-3xl font-bold text-foreground mb-2">Ali Haider</h3>
+                    <p className="text-primary font-medium text-lg mb-4">CEO & Lead Developer</p>
+                    <p className="text-muted-foreground leading-relaxed mb-6">
+                      Started with a dream and a second-hand laptop. Today, leading NEXORA to transform businesses with cutting-edge web solutions. Every project is a personal mission to make your business shine online.
                     </p>
-                  </div>
-                </div>
-              </GlassCard>
-            </FadeInOnView>
-
-            {/* Partner - Usman (Small) */}
-            <FadeInOnView delay={0.15}>
-              <GlassCard className="h-full text-center group py-10">
-                <div className="relative mx-auto w-28 h-28 mb-6 group-hover:scale-105 transition-transform">
-                  <div className="w-full h-full rounded-full bg-gradient-to-br from-accent via-primary to-accent p-1">
-                    <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
-                      <span className="text-3xl font-display font-bold text-accent">U</span>
+                    
+                    {/* Social Links */}
+                    <div className="flex justify-center md:justify-start gap-3">
+                      <motion.a
+                        href="#"
+                        whileHover={{ scale: 1.15, y: -3 }}
+                        className="w-11 h-11 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
+                      >
+                        <Linkedin size={20} />
+                      </motion.a>
+                      <motion.a
+                        href="#"
+                        whileHover={{ scale: 1.15, y: -3 }}
+                        className="w-11 h-11 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
+                      >
+                        <Github size={20} />
+                      </motion.a>
+                      <motion.a
+                        href="#"
+                        whileHover={{ scale: 1.15, y: -3 }}
+                        className="w-11 h-11 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
+                      >
+                        <Twitter size={20} />
+                      </motion.a>
                     </div>
                   </div>
                 </div>
-                <h3 className="font-display text-xl font-bold text-foreground mb-1">Usman</h3>
-                <p className="text-accent font-medium mb-3">Partner & Developer</p>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Bringing technical expertise and creative solutions to every project we build together.
-                </p>
               </GlassCard>
             </FadeInOnView>
-          </div>
 
-          <FadeInOnView delay={0.3}>
-            <div className="text-center mt-10">
-              <Button variant="glow" asChild>
-                <Link to="/about">
-                  Read Our Full Story
-                  <ArrowRight className="ml-2" size={18} />
-                </Link>
-              </Button>
-            </div>
-          </FadeInOnView>
+            <FadeInOnView delay={0.2}>
+              <div className="text-center mt-10">
+                <Button variant="glow" asChild>
+                  <Link to="/about">
+                    Meet Our Full Team
+                    <ArrowRight className="ml-2" size={18} />
+                  </Link>
+                </Button>
+              </div>
+            </FadeInOnView>
+          </div>
         </div>
       </SectionWrapper>
 
