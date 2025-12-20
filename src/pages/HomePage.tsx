@@ -7,7 +7,6 @@ import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import FadeInOnView from "@/components/ui/FadeInOnView";
 import HeroBackground from "@/components/hero/HeroBackground";
-import HeroHexagon from "@/components/hero/HeroHexagon";
 import { ReactIcon, NodeIcon, MongoIcon, ExpressIcon, NextIcon, TypeScriptIcon, TailwindIcon, ThreeIcon, TechStackItem } from "@/components/icons/TechIcons";
 const techStack = [
   { name: "React", icon: <ReactIcon /> },
@@ -110,88 +109,75 @@ const HomePage = () => {
         <HeroBackground />
         
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="text-center lg:text-left order-2 lg:order-1">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="mb-6"
-              >
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
-                  <Sparkles size={16} />
-                  Premium Web Development Agency
-                </span>
-              </motion.div>
-              
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                  Transform Your Vision Into{" "}
-                  <span className="gradient-text">Digital Reality</span>
-                </h1>
-              </motion.div>
-              
-              <motion.p
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-lg md:text-xl text-muted-foreground mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed"
-              >
-                We're not just developers—we're digital architects who turn your wildest ideas into pixel-perfect, high-converting web experiences.
-              </motion.p>
-              
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
-              >
-                <Button variant="hero" size="xl" asChild>
-                  <Link to="/contact">
-                    Start Your Project
-                    <ArrowRight className="ml-2" size={20} />
-                  </Link>
-                </Button>
-                <Button variant="hero-outline" size="xl" asChild>
-                  <Link to="/portfolio">View Our Magic</Link>
-                </Button>
-              </motion.div>
-              
-              {/* Trust badges */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-muted-foreground text-sm"
-              >
-                <div className="flex items-center gap-2">
-                  <CheckCircle size={16} className="text-primary" />
-                  <span>50+ Projects</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle size={16} className="text-primary" />
-                  <span>100% Satisfaction</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle size={16} className="text-primary" />
-                  <span>24/7 Support</span>
-                </div>
-              </motion.div>
-            </div>
-            
-            {/* Right - 3D Hexagon */}
+          <div className="max-w-4xl mx-auto text-center">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex justify-center lg:justify-end order-1 lg:order-2"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mb-6"
             >
-              <HeroHexagon />
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
+                <Sparkles size={16} />
+                Premium Web Development Agency
+              </span>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                Transform Your Vision Into{" "}
+                <span className="gradient-text">Digital Reality</span>
+              </h1>
+            </motion.div>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed"
+            >
+              We're not just developers—we're digital architects who turn your wildest ideas into pixel-perfect, high-converting web experiences that your competitors will envy.
+            </motion.p>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            >
+              <Button variant="hero" size="xl" asChild>
+                <Link to="/contact">
+                  Start Your Project
+                  <ArrowRight className="ml-2" size={20} />
+                </Link>
+              </Button>
+              <Button variant="hero-outline" size="xl" asChild>
+                <Link to="/portfolio">View Our Magic</Link>
+              </Button>
+            </motion.div>
+            
+            {/* Trust badges */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="mt-12 flex flex-wrap items-center justify-center gap-8 text-muted-foreground text-sm"
+            >
+              <div className="flex items-center gap-2">
+                <CheckCircle size={16} className="text-primary" />
+                <span>50+ Projects Delivered</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle size={16} className="text-primary" />
+                <span>100% Client Satisfaction</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle size={16} className="text-primary" />
+                <span>24/7 Support</span>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -200,16 +186,16 @@ const HomePage = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          transition={{ delay: 1.2 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2"
         >
           <motion.div
-            animate={{ y: [0, 8, 0] }}
+            animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
             className="flex flex-col items-center gap-2 text-muted-foreground"
           >
-            <span className="text-xs">Scroll to explore</span>
-            <ArrowDown size={18} />
+            <span className="text-sm">Scroll to explore</span>
+            <ArrowDown size={20} />
           </motion.div>
         </motion.div>
       </section>
