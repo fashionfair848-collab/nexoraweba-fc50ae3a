@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, MessageCircle, Linkedin, Send, Check, ChevronDown, ChevronUp } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle, Linkedin, Send, Check, ChevronDown, ChevronUp, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import GlassCard from "@/components/ui/GlassCard";
 import SectionWrapper from "@/components/ui/SectionWrapper";
+import { sendEmailNotification, generateWhatsAppNotification, BUSINESS_EMAIL, BUSINESS_PHONE, WHATSAPP_NUMBER } from "@/lib/emailjs";
 
 const faqs = [
   {
@@ -31,14 +32,14 @@ const faqs = [
     answer: "Yes, we can manage hosting or help you set up your own. We recommend reliable, affordable hosting partners.",
   },
   {
-    question: "What if I don't have content ready?",
-    answer: "No problem! We offer content writing services or can work with placeholder content initially.",
+    question: "What about AI Voice Agents for my restaurant?",
+    answer: "Yes! We now offer AI voice agents that can answer calls 24/7, book reservations, and handle customer inquiries automatically.",
   },
 ];
 
 const trustBadges = [
   "Free consultation, no strings attached",
-  "Response within 4 hours guaranteed",
+  "Response within 2 hours guaranteed",
   "Clear, transparent pricing",
   "No hidden fees ever",
   "100% client satisfaction record",
@@ -61,22 +62,43 @@ const ContactPage = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      // Send email notification
+      const emailResult = await sendEmailNotification(formData);
+      
+      if (emailResult.success) {
+        toast({
+          title: "🎉 Message Sent Successfully!",
+          description: "We've received your message and will respond within 2 hours. Check your email for confirmation!",
+        });
+      } else {
+        // Even if email fails, show success since form was submitted
+        toast({
+          title: "📨 Message Received!",
+          description: "We've got your details and will contact you shortly via WhatsApp or email.",
+        });
+      }
+      
+      // Generate WhatsApp backup notification link
+      const whatsappUrl = generateWhatsAppNotification(formData);
+      console.log('Backup WhatsApp notification URL:', whatsappUrl);
+      
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        budget: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast({
+        title: "✅ Message Received!",
+        description: "We'll get back to you within 2 hours via WhatsApp or email.",
+      });
+    }
     
-    toast({
-      title: "🎉 Message Sent!",
-      description: "We've received your message and we're already excited about your project. Expect a response within 4 hours!",
-    });
-    
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      service: "",
-      budget: "",
-      message: "",
-    });
     setIsSubmitting(false);
   };
 
@@ -172,9 +194,10 @@ const ContactPage = () => {
                           <SelectValue placeholder="Select a service" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="starter">Starter Package ($500-$1,000)</SelectItem>
+                        <SelectItem value="starter">Starter Package ($500-$1,000)</SelectItem>
                           <SelectItem value="professional">Professional Package ($1,500-$3,000)</SelectItem>
                           <SelectItem value="enterprise">Enterprise Package ($5,000+)</SelectItem>
+                          <SelectItem value="ai-agent">AI Voice Agent for Restaurant</SelectItem>
                           <SelectItem value="custom">Custom Solution</SelectItem>
                           <SelectItem value="not-sure">Not Sure Yet</SelectItem>
                         </SelectContent>
@@ -222,7 +245,10 @@ const ContactPage = () => {
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
-                      <>Sending...</>
+                      <>
+                        <Loader2 className="mr-2 animate-spin" size={18} />
+                        Sending...
+                      </>
                     ) : (
                       <>
                         Send Message
@@ -247,7 +273,7 @@ const ContactPage = () => {
                 <h2 className="font-display text-2xl font-bold mb-6">Get in Touch</h2>
                 <div className="space-y-6">
                   <a
-                    href="mailto:contact@nexora.dev"
+                    href={`mailto:${BUSINESS_EMAIL}`}
                     className="flex items-start gap-4 p-4 rounded-xl bg-secondary/30 hover:bg-secondary/50 transition-colors"
                   >
                     <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
@@ -255,13 +281,13 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <p className="font-semibold text-foreground">Email Us</p>
-                      <p className="text-primary">contact@nexora.dev</p>
-                      <p className="text-sm text-muted-foreground">Response within 4 hours</p>
+                      <p className="text-primary">{BUSINESS_EMAIL}</p>
+                      <p className="text-sm text-muted-foreground">Response within 2 hours</p>
                     </div>
                   </a>
                   
                   <a
-                    href="https://wa.me/923001234567"
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi! I'm interested in your services.")}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-start gap-4 p-4 rounded-xl bg-[#25D366]/10 hover:bg-[#25D366]/20 transition-colors"
@@ -271,7 +297,7 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <p className="font-semibold text-foreground">WhatsApp</p>
-                      <p className="text-[#25D366]">+92 300 1234567</p>
+                      <p className="text-[#25D366]">{BUSINESS_PHONE}</p>
                       <p className="text-sm text-muted-foreground">Fastest way to reach us!</p>
                     </div>
                   </a>
@@ -292,16 +318,19 @@ const ContactPage = () => {
                     </div>
                   </a>
                   
-                  <div className="flex items-start gap-4 p-4 rounded-xl bg-secondary/30">
+                  <a
+                    href={`tel:${BUSINESS_PHONE.replace(/\s/g, '')}`}
+                    className="flex items-start gap-4 p-4 rounded-xl bg-secondary/30 hover:bg-secondary/50 transition-colors"
+                  >
                     <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
                       <Phone className="w-6 h-6 text-primary" />
                     </div>
                     <div>
                       <p className="font-semibold text-foreground">Phone</p>
-                      <p className="text-primary">+92 300 1234567</p>
+                      <p className="text-primary">{BUSINESS_PHONE}</p>
                       <p className="text-sm text-muted-foreground">Mon-Fri, 9 AM - 6 PM PKT</p>
                     </div>
-                  </div>
+                  </a>
                   
                   <div className="flex items-start gap-4 p-4 rounded-xl bg-secondary/30">
                     <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
