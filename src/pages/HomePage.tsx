@@ -7,6 +7,7 @@ import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import FadeInOnView from "@/components/ui/FadeInOnView";
 import HeroBackground from "@/components/hero/HeroBackground";
+import AIAgentsSection from "@/components/sections/AIAgentsSection";
 import { ReactIcon, NodeIcon, MongoIcon, ExpressIcon, NextIcon, TypeScriptIcon, TailwindIcon, ThreeIcon, TechStackItem } from "@/components/icons/TechIcons";
 const techStack = [
   { name: "React", icon: <ReactIcon /> },
@@ -403,7 +404,8 @@ const HomePage = () => {
         </div>
       </SectionWrapper>
 
-      {/* Founder Section */}
+      {/* AI Agents Section - NEW */}
+      <AIAgentsSection />
       <SectionWrapper className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <FadeInOnView>

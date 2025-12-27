@@ -93,11 +93,15 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Mail size={18} className="text-primary mt-0.5" />
-                <span className="text-muted-foreground text-sm">contact@nexora.dev</span>
+                <a href="mailto:nexora.busniess@gmail.com" className="text-muted-foreground text-sm hover:text-primary transition-colors">
+                  nexora.busniess@gmail.com
+                </a>
               </li>
               <li className="flex items-start gap-3">
                 <Phone size={18} className="text-primary mt-0.5" />
-                <span className="text-muted-foreground text-sm">+92 300 1234567</span>
+                <a href="tel:+923255446976" className="text-muted-foreground text-sm hover:text-primary transition-colors">
+                  +92 325 5446976
+                </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-primary mt-0.5" />
