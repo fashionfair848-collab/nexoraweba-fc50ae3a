@@ -6,6 +6,11 @@ import GlassCard from "@/components/ui/GlassCard";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import FadeInOnView from "@/components/ui/FadeInOnView";
 
+import aliHaiderImg from "@/assets/team/ali-haider.jpg";
+import usmanImg from "@/assets/team/usman.jpg";
+import sarahAhmedImg from "@/assets/team/sarah-ahmed.jpg";
+import hassanKhanImg from "@/assets/team/hassan-khan.jpg";
+
 const values = [
   {
     icon: Flame,
@@ -58,7 +63,8 @@ const team = [
   {
     name: "Ali Haider",
     role: "Founder & CEO",
-    bio: "Started with a dream and a second-hand laptop. Today, leading NEXORA to transform businesses with cutting-edge web solutions. Every line of code carries a mission: Making your business shine online.",
+    bio: "Ali Haider is the Founder of Nexora, a forward-thinking technology company focused on building smart, scalable, and AI-driven digital solutions. With a strong background in web development, software solutions, and digital innovation, Ali founded Nexora with a clear vision — to help businesses grow through modern technology and automation.",
+    image: aliHaiderImg,
     initials: "AH",
     isFounder: true,
     socials: {
@@ -71,6 +77,7 @@ const team = [
     name: "Usman",
     role: "Senior Developer",
     bio: "Technical expertise meets creative problem-solving. Building robust solutions that scale with your business.",
+    image: usmanImg,
     initials: "U",
     isFounder: false,
     socials: {
@@ -82,6 +89,7 @@ const team = [
     name: "Sarah Ahmed",
     role: "UI/UX Designer",
     bio: "Crafting intuitive and beautiful user experiences. Every interface is designed to delight users and drive conversions.",
+    image: sarahAhmedImg,
     initials: "SA",
     isFounder: false,
     socials: {
@@ -93,6 +101,7 @@ const team = [
     name: "Hassan Khan",
     role: "Backend Developer",
     bio: "Building the invisible architecture that powers your applications. Scalable, secure, and lightning-fast solutions.",
+    image: hassanKhanImg,
     initials: "HK",
     isFounder: false,
     socials: {
@@ -168,9 +177,14 @@ const AboutPage = () => {
                     whileHover={{ scale: 1.05 }}
                     className="relative shrink-0"
                   >
-                    <div className="w-44 h-44 rounded-full bg-gradient-to-br from-primary via-accent to-primary p-1 animate-pulse-glow">
+                    <div className="w-44 h-44 rounded-full bg-gradient-to-br from-primary via-accent to-primary p-1">
                       <div className="w-full h-full rounded-full bg-card flex items-center justify-center overflow-hidden">
-                        <span className="text-5xl font-display font-bold text-primary">AH</span>
+                        <img 
+                          src={aliHaiderImg} 
+                          alt="Ali Haider - Founder"
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
                       </div>
                     </div>
                     <motion.div
@@ -187,8 +201,11 @@ const AboutPage = () => {
                   <div className="text-center md:text-left flex-1">
                     <h3 className="font-display text-2xl font-bold text-foreground mb-1">Ali Haider</h3>
                     <p className="text-primary font-medium mb-4">CEO & Lead Developer</p>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
+                    <p className="text-muted-foreground leading-relaxed mb-4">
                       {team[0].bio}
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed mb-6 text-sm">
+                      Driven by creativity and problem-solving, he believes in delivering solutions that are not only visually appealing but also highly functional and future-ready. Under his leadership, Nexora aims to bridge the gap between ideas and execution through intelligent systems and user-centric design.
                     </p>
                     
                     {/* Social Links */}
@@ -237,8 +254,13 @@ const AboutPage = () => {
                     className="relative mx-auto w-28 h-28 mb-6"
                   >
                     <div className="w-full h-full rounded-full bg-gradient-to-br from-accent via-primary to-accent p-1">
-                      <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
-                        <span className="text-3xl font-display font-bold text-accent">{member.initials}</span>
+                      <div className="w-full h-full rounded-full bg-card flex items-center justify-center overflow-hidden">
+                        <img 
+                          src={member.image} 
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
                       </div>
                     </div>
                   </motion.div>
@@ -404,47 +426,42 @@ const AboutPage = () => {
                       key={skill.name}
                       initial={{ opacity: 0, x: -30 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      transition={{ delay: index * 0.1 }}
                       viewport={{ once: true }}
                     >
                       <div className="flex justify-between mb-2">
-                        <span className="text-foreground font-medium">{skill.name}</span>
+                        <span className="font-medium text-foreground">{skill.name}</span>
                         <span className="text-primary font-semibold">{skill.level}%</span>
                       </div>
                       <div className="h-3 bg-secondary rounded-full overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.level}%` }}
-                          transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
+                          transition={{ duration: 1, delay: index * 0.1 }}
                           viewport={{ once: true }}
-                          className="h-full bg-gradient-to-r from-primary to-accent rounded-full relative"
-                        >
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                        </motion.div>
+                          className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
+                        />
                       </div>
                     </motion.div>
                   ))}
                 </div>
               </div>
             </FadeInOnView>
-            
-            {/* Why Choose NEXORA */}
-            <FadeInOnView delay={0.2}>
+
+            {/* Comparison */}
+            <FadeInOnView delay={0.3}>
               <div>
                 <h2 className="font-display text-3xl md:text-4xl font-bold mb-8">
-                  Why Choose <span className="gradient-text">NEXORA?</span>
+                  The <span className="gradient-text">NEXORA</span> Difference
                 </h2>
                 <div className="grid gap-6">
-                  <GlassCard className="border-destructive/20">
-                    <h3 className="font-display text-lg font-semibold text-destructive mb-4 flex items-center gap-2">
+                  <GlassCard>
+                    <h3 className="font-display text-lg font-semibold mb-4 text-destructive flex items-center gap-2">
                       <X className="w-5 h-5" /> Typical Agencies
                     </h3>
                     <ul className="space-y-3">
                       {typicalAgencies.map((item) => (
-                        <li 
-                          key={item} 
-                          className="flex items-center gap-3 text-muted-foreground text-sm"
-                        >
+                        <li key={item} className="flex items-center gap-3 text-muted-foreground">
                           <X className="w-4 h-4 text-destructive shrink-0" />
                           {item}
                         </li>
@@ -453,15 +470,12 @@ const AboutPage = () => {
                   </GlassCard>
                   
                   <GlassCard className="border-primary/30">
-                    <h3 className="font-display text-lg font-semibold text-primary mb-4 flex items-center gap-2">
-                      <Check className="w-5 h-5" /> NEXORA Difference
+                    <h3 className="font-display text-lg font-semibold mb-4 text-primary flex items-center gap-2">
+                      <Check className="w-5 h-5" /> The NEXORA Way
                     </h3>
                     <ul className="space-y-3">
                       {nexoraDifference.map((item) => (
-                        <li 
-                          key={item} 
-                          className="flex items-center gap-3 text-muted-foreground text-sm"
-                        >
+                        <li key={item} className="flex items-center gap-3 text-foreground">
                           <Check className="w-4 h-4 text-primary shrink-0" />
                           {item}
                         </li>
@@ -479,22 +493,18 @@ const AboutPage = () => {
       <SectionWrapper className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <FadeInOnView>
-            <GlassCard className="text-center py-16 px-8 relative overflow-hidden">
-              <div className="absolute inset-0 opacity-30">
-                <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent/20 rounded-full blur-3xl" />
-              </div>
-              
+            <GlassCard className="text-center py-16 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5" />
               <div className="relative z-10">
-                <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-                  Ready to Join Our <span className="gradient-text">Success Stories?</span>
+                <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">
+                  Ready to <span className="gradient-text">Transform</span> Your Business?
                 </h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-                  Let's work together and create something extraordinary.
+                <p className="text-muted-foreground max-w-2xl mx-auto mb-8 text-lg">
+                  Let's discuss how we can turn your vision into reality. No pressure, just a friendly conversation about possibilities.
                 </p>
                 <Button variant="hero" size="xl" asChild>
                   <Link to="/contact">
-                    Let's Work Together
+                    Start Your Project
                     <ArrowRight className="ml-2" size={20} />
                   </Link>
                 </Button>
