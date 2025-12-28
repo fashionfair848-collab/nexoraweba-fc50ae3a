@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowDown, Rocket, Users, Heart, Shield, Code, Zap, Layers, Star, CheckCircle, TrendingUp, Clock, Award, Target, Sparkles, Globe, BarChart3, MessageSquare, Linkedin, Github, Twitter } from "lucide-react";
+
+import aliHaiderImg from "@/assets/team/ali-haider.jpg";
 import { Button } from "@/components/ui/button";
 import GlassCard from "@/components/ui/GlassCard";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
@@ -426,8 +428,13 @@ const HomePage = () => {
                 <div className="flex flex-col md:flex-row items-center gap-10">
                   <div className="relative shrink-0">
                     <div className="w-44 h-44 rounded-full bg-gradient-to-br from-primary via-accent to-primary p-1 group-hover:scale-105 transition-transform duration-300">
-                      <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
-                        <span className="text-5xl font-display font-bold text-primary">AH</span>
+                      <div className="w-full h-full rounded-full bg-card overflow-hidden">
+                        <img 
+                          src={aliHaiderImg} 
+                          alt="Ali Haider - Founder"
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
                       </div>
                     </div>
                     <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-5 py-1.5 bg-gradient-to-r from-primary to-accent rounded-full shadow-lg">
@@ -439,7 +446,7 @@ const HomePage = () => {
                     <h3 className="font-display text-3xl font-bold text-foreground mb-2">Ali Haider</h3>
                     <p className="text-primary font-medium text-lg mb-4">CEO & Lead Developer</p>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                      Started with a dream and a second-hand laptop. Today, leading NEXORA to transform businesses with cutting-edge web solutions. Every project is a personal mission to make your business shine online.
+                      Ali Haider is the Founder of Nexora, a forward-thinking technology company focused on building smart, scalable, and AI-driven digital solutions. Driven by creativity and problem-solving, he believes in delivering solutions that are not only visually appealing but also highly functional and future-ready.
                     </p>
                     
                     {/* Social Links */}
