@@ -7,7 +7,7 @@ import {
   Search, Share2, Mail, FileText, Target,
   Building2, Heart, Home, GraduationCap, ShoppingBag, Landmark,
   Users, Award, Briefcase, BookOpen,
-  Workflow, CheckCircle, Headphones, Wrench, RefreshCw
+  Workflow, CheckCircle, Headphones, Wrench, RefreshCw, Rocket
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
@@ -64,7 +64,7 @@ const navItems: NavItem[] = [
       {
         title: "Industries",
         items: [
-          { title: "Startups & Scale-ups", path: "/industries/startups", icon: Building2, description: "Launch & grow your startup" },
+          { title: "Startups & Scale-ups", path: "/industries/startups", icon: Rocket, description: "Launch & grow your startup" },
           { title: "E-commerce Businesses", path: "/industries/ecommerce", icon: ShoppingCart, description: "Online retail solutions" },
           { title: "Healthcare & Medical", path: "/industries/healthcare", icon: Heart, description: "Healthcare technology" },
           { title: "Real Estate", path: "/industries/real-estate", icon: Home, description: "Property & real estate tech" },
@@ -159,6 +159,14 @@ const MegaMenu = () => {
     setIsOpen(false);
   };
 
+  // Calculate grid columns based on section items count
+  const getGridClass = (itemCount: number) => {
+    if (itemCount <= 4) return "grid-cols-2 lg:grid-cols-4";
+    if (itemCount <= 5) return "grid-cols-2 md:grid-cols-3 lg:grid-cols-5";
+    if (itemCount <= 6) return "grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6";
+    return "grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7";
+  };
+
   return (
     <motion.nav
       ref={navRef}
@@ -171,22 +179,22 @@ const MegaMenu = () => {
           : "bg-background/80 backdrop-blur-md"
       }`}
     >
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      <div className="container mx-auto px-4 lg:px-6 xl:px-8">
+        <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group" onClick={closeMenu}>
+          <Link to="/" className="flex items-center gap-2 group shrink-0" onClick={closeMenu}>
             <motion.img 
               src={NexoraLogo} 
               alt="NEXORA" 
-              className="w-10 h-10"
+              className="w-8 h-8 lg:w-10 lg:h-10"
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.6 }}
             />
-            <span className="font-display font-bold text-xl text-foreground group-hover:text-primary transition-colors">NEXORA</span>
+            <span className="font-display font-bold text-lg lg:text-xl text-foreground group-hover:text-primary transition-colors">NEXORA</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-0.5 xl:gap-1">
             {navItems.map((item) => (
               <div
                 key={item.name}
@@ -197,7 +205,7 @@ const MegaMenu = () => {
                 {item.path ? (
                   <Link
                     to={item.path}
-                    className={`px-4 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-muted ${
+                    className={`px-2.5 xl:px-4 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-muted ${
                       item.isHighlighted
                         ? "text-orange-500 hover:text-orange-400"
                         : "text-muted-foreground hover:text-foreground"
@@ -208,7 +216,7 @@ const MegaMenu = () => {
                   </Link>
                 ) : (
                   <button
-                    className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-muted ${
+                    className={`flex items-center gap-1 px-2.5 xl:px-4 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-muted whitespace-nowrap ${
                       item.isHighlighted
                         ? "text-orange-500 hover:text-orange-400"
                         : activeMenu === item.name
@@ -230,15 +238,15 @@ const MegaMenu = () => {
           </div>
 
           {/* Right Side */}
-          <div className="hidden lg:flex items-center gap-3">
-            <button className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <div className="hidden lg:flex items-center gap-2 xl:gap-3 shrink-0">
+            <button className="flex items-center gap-1.5 xl:gap-2 px-2 xl:px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
               <Globe size={16} />
-              <span>Global (EN)</span>
+              <span className="hidden xl:inline">Global (EN)</span>
               <ChevronDown size={14} />
             </button>
             <ThemeToggle />
-            <Button variant="glow" asChild>
-              <Link to="/contact">Free Consultation</Link>
+            <Button variant="glow" size="sm" className="text-sm px-3 xl:px-4" asChild>
+              <Link to="/contact">Book a Service</Link>
             </Button>
           </div>
 
@@ -248,6 +256,7 @@ const MegaMenu = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 text-foreground hover:bg-muted rounded-lg transition-colors"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -255,7 +264,7 @@ const MegaMenu = () => {
         </div>
       </div>
 
-      {/* Desktop Mega Menu Dropdowns */}
+      {/* Desktop Mega Menu Dropdowns - White Background */}
       <AnimatePresence>
         {activeMenu && (
           <motion.div
@@ -263,36 +272,36 @@ const MegaMenu = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 right-0 bg-popover/98 backdrop-blur-xl border-b border-border shadow-2xl hidden lg:block"
+            className="absolute top-full left-0 right-0 bg-white dark:bg-card border-b border-border/50 shadow-2xl hidden lg:block overflow-x-hidden"
             onMouseEnter={() => timeoutRef.current && clearTimeout(timeoutRef.current)}
             onMouseLeave={handleMouseLeave}
           >
-            <div className="container mx-auto px-4 lg:px-8 py-8">
+            <div className="container mx-auto px-4 lg:px-6 xl:px-8 py-6 lg:py-8 max-w-full">
               {navItems.find(item => item.name === activeMenu)?.sections?.map((section, sectionIndex) => (
-                <div key={section.title} className={sectionIndex > 0 ? "mt-8" : ""}>
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">
+                <div key={section.title} className={sectionIndex > 0 ? "mt-6 lg:mt-8 pt-6 lg:pt-8 border-t border-border/30" : ""}>
+                  <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4 lg:mb-5">
                     {section.title}
                   </h3>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+                  <div className={`grid ${getGridClass(section.items.length)} gap-2 lg:gap-3`}>
                     {section.items.map((menuItem) => (
                       <Link
                         key={menuItem.path}
                         to={menuItem.path}
                         onClick={closeMenu}
-                        className="group flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-all duration-200"
+                        className="group flex items-start gap-3 p-3 lg:p-4 rounded-xl bg-gray-50/50 dark:bg-muted/30 hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5 dark:hover:from-primary/10 dark:hover:to-accent/10 border border-transparent hover:border-primary/20 transition-all duration-300"
                       >
-                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                        <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center shrink-0 group-hover:from-primary/20 group-hover:to-accent/20 group-hover:scale-110 transition-all duration-300">
                           <menuItem.icon className="w-5 h-5 text-primary" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
-                            <span className="font-medium text-foreground group-hover:text-primary transition-colors text-sm">
+                            <span className="font-medium text-gray-900 dark:text-foreground group-hover:text-primary transition-colors text-sm">
                               {menuItem.title}
                             </span>
                             <ArrowRight className="w-3 h-3 text-muted-foreground opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                           </div>
                           {menuItem.description && (
-                            <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">
+                            <p className="text-xs text-gray-500 dark:text-muted-foreground mt-0.5 line-clamp-2">
                               {menuItem.description}
                             </p>
                           )}
@@ -323,7 +332,7 @@ const MegaMenu = () => {
               ))}
               <div className="pt-4 mt-4 border-t border-border">
                 <Button variant="glow" className="w-full" asChild>
-                  <Link to="/contact" onClick={closeMenu}>Free Consultation</Link>
+                  <Link to="/contact" onClick={closeMenu}>Book a Service</Link>
                 </Button>
               </div>
             </div>
@@ -399,16 +408,16 @@ const MobileMenuItem = ({
                 <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 px-2">
                   {section.title}
                 </h4>
-                <div className="space-y-1">
+                <div className="grid grid-cols-2 gap-1">
                   {section.items.map((menuItem) => (
                     <Link
                       key={menuItem.path}
                       to={menuItem.path}
                       onClick={closeMenu}
-                      className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-muted/50 transition-colors"
+                      className="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-muted/50 transition-colors"
                     >
-                      <menuItem.icon className="w-4 h-4 text-primary" />
-                      <span className="text-sm text-foreground">{menuItem.title}</span>
+                      <menuItem.icon className="w-4 h-4 text-primary shrink-0" />
+                      <span className="text-sm text-foreground truncate">{menuItem.title}</span>
                     </Link>
                   ))}
                 </div>
