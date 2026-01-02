@@ -8,6 +8,7 @@ import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 import MegaMenu from "@/components/layout/MegaMenu";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import BackToTop from "@/components/ui/BackToTop";
 import HomePage from "@/pages/HomePage";
 import ServicesPage from "@/pages/ServicesPage";
 import PortfolioPage from "@/pages/PortfolioPage";
@@ -63,6 +64,7 @@ const AppContent = () => {
       </main>
       <Footer />
       <WhatsAppButton />
+      <BackToTop />
     </div>
   );
 };
