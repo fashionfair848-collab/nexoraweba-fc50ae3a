@@ -26,8 +26,16 @@ import SocialMediaPage from "@/pages/services/SocialMediaPage";
 import EmailMarketingPage from "@/pages/services/EmailMarketingPage";
 import ContentWritingPage from "@/pages/services/ContentWritingPage";
 import PPCPage from "@/pages/services/PPCPage";
-// Industry & Process Pages
-import IndustryPage from "@/pages/industries/IndustryPage";
+// Industry Pages
+import IndustriesMainPage from "@/pages/industries/IndustriesMainPage";
+import StartupsPage from "@/pages/industries/StartupsPage";
+import EcommerceIndustryPage from "@/pages/industries/EcommerceIndustryPage";
+import HealthcarePage from "@/pages/industries/HealthcarePage";
+import RealEstatePage from "@/pages/industries/RealEstatePage";
+import EducationPage from "@/pages/industries/EducationPage";
+import RetailPage from "@/pages/industries/RetailPage";
+import FintechPage from "@/pages/industries/FintechPage";
+// Process Pages
 import ProcessPage from "@/pages/process/ProcessPage";
 
 const queryClient = new QueryClient();
@@ -41,6 +49,7 @@ const AppContent = () => {
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          {/* Services */}
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/web-development" element={<WebDevelopmentPage />} />
           <Route path="/services/app-development" element={<AppDevelopmentPage />} />
@@ -52,11 +61,22 @@ const AppContent = () => {
           <Route path="/services/email-marketing" element={<EmailMarketingPage />} />
           <Route path="/services/content-writing" element={<ContentWritingPage />} />
           <Route path="/services/ppc" element={<PPCPage />} />
-          <Route path="/industries/:industry" element={<IndustryPage />} />
+          {/* Industries */}
+          <Route path="/industries" element={<IndustriesMainPage />} />
+          <Route path="/industries/startups" element={<StartupsPage />} />
+          <Route path="/industries/ecommerce" element={<EcommerceIndustryPage />} />
+          <Route path="/industries/healthcare" element={<HealthcarePage />} />
+          <Route path="/industries/real-estate" element={<RealEstatePage />} />
+          <Route path="/industries/education" element={<EducationPage />} />
+          <Route path="/industries/retail" element={<RetailPage />} />
+          <Route path="/industries/fintech" element={<FintechPage />} />
+          {/* Process */}
           <Route path="/process" element={<ProcessPage />} />
           <Route path="/process/:page" element={<ProcessPage />} />
+          {/* Company */}
           <Route path="/about" element={<AboutPage />} />
           <Route path="/about/:page" element={<AboutPage />} />
+          {/* Other */}
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFound />} />
