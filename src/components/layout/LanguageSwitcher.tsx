@@ -9,7 +9,11 @@ const LanguageSwitcher = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
+  // Get current language, fallback to English if not found
+  const currentLangCode = languages.find(lang => lang.code === i18n.language)?.code || 
+                          languages.find(lang => i18n.language?.startsWith(lang.code))?.code || 
+                          'en';
+  const currentLanguage = languages.find(lang => lang.code === currentLangCode) || languages[0];
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -25,7 +29,7 @@ const LanguageSwitcher = () => {
     i18n.changeLanguage(langCode);
     setIsOpen(false);
     
-    // Update document direction for RTL languages
+    // Update document direction for RTL languages (if needed in future)
     const language = languages.find(l => l.code === langCode);
     if (language) {
       document.documentElement.dir = language.dir;
@@ -67,7 +71,7 @@ const LanguageSwitcher = () => {
                   key={language.code}
                   onClick={() => changeLanguage(language.code)}
                   className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg transition-colors ${
-                    currentLanguage.code === language.code
+                    currentLangCode === language.code
                       ? "bg-primary/10 text-primary"
                       : "text-foreground hover:bg-muted"
                   }`}
@@ -79,7 +83,7 @@ const LanguageSwitcher = () => {
                       <div className="text-xs text-muted-foreground">{language.nativeName}</div>
                     </div>
                   </div>
-                  {currentLanguage.code === language.code && (
+                  {currentLangCode === language.code && (
                     <Check size={16} className="text-primary" />
                   )}
                 </button>

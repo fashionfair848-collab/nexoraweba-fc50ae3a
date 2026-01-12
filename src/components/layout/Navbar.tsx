@@ -2,22 +2,25 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
+import LanguageSwitcher from "./LanguageSwitcher";
 import NexoraLogo from "@/assets/nexora-logo.svg";
 
-const navLinks = [
-  { name: "Home", path: "/" },
-  { name: "Services", path: "/services" },
-  { name: "Portfolio", path: "/portfolio" },
-  { name: "About", path: "/about" },
-  { name: "Contact", path: "/contact" },
-];
-
 const Navbar = () => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+
+  const navLinks = [
+    { name: t('nav.home', 'Home'), path: "/" },
+    { name: t('nav.services', 'Services'), path: "/services" },
+    { name: t('nav.portfolio', 'Portfolio'), path: "/portfolio" },
+    { name: t('nav.about', 'About'), path: "/about" },
+    { name: t('nav.contact', 'Contact'), path: "/contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,14 +78,16 @@ const Navbar = () => {
 
           {/* Right Side */}
           <div className="hidden md:flex items-center gap-3">
+            <LanguageSwitcher />
             <ThemeToggle />
             <Button variant="glow" asChild>
-              <Link to="/contact">Start Your Project</Link>
+              <Link to="/contact">{t('hero.cta', 'Start Your Project')}</Link>
             </Button>
           </div>
 
           {/* Mobile Menu Toggle */}
           <div className="md:hidden flex items-center gap-2">
+            <LanguageSwitcher />
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -130,7 +135,7 @@ const Navbar = () => {
                 transition={{ delay: 0.5 }}
               >
                 <Button variant="glow" className="w-full mt-4" asChild>
-                  <Link to="/contact">Start Your Project</Link>
+                  <Link to="/contact">{t('hero.cta', 'Start Your Project')}</Link>
                 </Button>
               </motion.div>
             </div>
