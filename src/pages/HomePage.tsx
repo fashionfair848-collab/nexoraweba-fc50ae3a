@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowDown, Rocket, Users, Heart, Shield, Code, Zap, Layers, Star, CheckCircle, TrendingUp, Clock, Award, Target, Sparkles, Globe, BarChart3, MessageSquare, Linkedin, Github, Twitter, Play, Phone, Bot } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import aliHaiderImg from "@/assets/team/ali-haider.jpg";
 import { Button } from "@/components/ui/button";
@@ -23,89 +24,91 @@ const techStack = [
   { name: "Three.js", icon: <ThreeIcon /> },
 ];
 
-const testimonials = [
-  {
-    name: "Sarah Thompson",
-    company: "CEO, GrowthLabs",
-    text: "Working with NEXORA was like finding a secret weapon. Our new website doesn't just look incredible—it brought us 10x more leads in the first month. Ali is a genius!",
-    rating: 5,
-    avatar: "ST",
-  },
-  {
-    name: "Michael Chen",
-    company: "Founder, TechStart",
-    text: "The attention to detail and professionalism exceeded all expectations. Our web app handles thousands of users flawlessly. Highly recommended!",
-    rating: 5,
-    avatar: "MC",
-  },
-  {
-    name: "Emily Rodriguez",
-    company: "Marketing Director, BrandCo",
-    text: "NEXORA transformed our online presence completely. The design is stunning and the performance is outstanding. Best investment we've made!",
-    rating: 5,
-    avatar: "ER",
-  },
-];
-
-const services = [
-  {
-    icon: Code,
-    title: "Stunning Websites That Convert",
-    description: "From elegant landing pages to complex e-commerce platforms, we build responsive, SEO-optimized websites that turn visitors into customers.",
-    features: ["Responsive Design", "SEO Optimized", "Fast Loading"],
-  },
-  {
-    icon: Zap,
-    title: "Powerful Web Apps That Scale",
-    description: "Custom web applications with robust backends, real-time features, and intuitive interfaces that users love and businesses depend on.",
-    features: ["Real-time Features", "Scalable Backend", "User-Friendly"],
-  },
-  {
-    icon: Layers,
-    title: "Complete Digital Ecosystems",
-    description: "End-to-end solutions including frontend, backend, database, APIs, authentication, payments—everything your business needs to thrive online.",
-    features: ["Full-Stack", "Payment Integration", "Authentication"],
-  },
-];
-
-const stats = [
-  { value: 50, suffix: "+", label: "Projects Delivered", icon: Rocket },
-  { value: 40, suffix: "+", label: "Happy Clients", icon: Users },
-  { value: 100, suffix: "%", label: "Client Satisfaction", icon: Heart },
-  { value: 24, suffix: "/7", label: "Support & Maintenance", icon: Shield },
-];
-
-const whyChooseUs = [
-  {
-    icon: TrendingUp,
-    title: "Growth-Focused",
-    description: "Every pixel is designed to convert visitors into loyal customers"
-  },
-  {
-    icon: Clock,
-    title: "Fast Delivery",
-    description: "We deliver projects on time, every time—no excuses"
-  },
-  {
-    icon: Award,
-    title: "Premium Quality",
-    description: "Award-winning designs that stand out from the competition"
-  },
-  {
-    icon: Target,
-    title: "Results-Driven",
-    description: "We focus on ROI, not just pretty designs"
-  },
-];
-
-const results = [
-  { metric: "300%", label: "Average Increase in Leads" },
-  { metric: "50%", label: "Reduction in Bounce Rate" },
-  { metric: "10x", label: "Return on Investment" },
-  { metric: "2 sec", label: "Average Load Time" },
-];
-
 const HomePage = () => {
+  const { t } = useTranslation();
+
+  const testimonials = [
+    {
+      name: "Sarah Thompson",
+      company: "CEO, GrowthLabs",
+      text: t('testimonials.sarah', "Working with NEXORA was like finding a secret weapon. Our new website doesn't just look incredible—it brought us 10x more leads in the first month. Ali is a genius!"),
+      rating: 5,
+      avatar: "ST",
+    },
+    {
+      name: "Michael Chen",
+      company: "Founder, TechStart",
+      text: t('testimonials.michael', "The attention to detail and professionalism exceeded all expectations. Our web app handles thousands of users flawlessly. Highly recommended!"),
+      rating: 5,
+      avatar: "MC",
+    },
+    {
+      name: "Emily Rodriguez",
+      company: "Marketing Director, BrandCo",
+      text: t('testimonials.emily', "NEXORA transformed our online presence completely. The design is stunning and the performance is outstanding. Best investment we've made!"),
+      rating: 5,
+      avatar: "ER",
+    },
+  ];
+
+  const services = [
+    {
+      icon: Code,
+      title: t('services.websitesTitle'),
+      description: t('services.websitesDesc'),
+      features: [t('services.responsiveDesign'), t('services.seoOptimized'), t('services.fastLoading')],
+    },
+    {
+      icon: Zap,
+      title: t('services.appsTitle'),
+      description: t('services.appsDesc'),
+      features: [t('services.realTimeFeatures'), t('services.scalableBackend'), t('services.userFriendly')],
+    },
+    {
+      icon: Layers,
+      title: t('services.ecosystemsTitle'),
+      description: t('services.ecosystemsDesc'),
+      features: [t('services.fullStack'), t('services.paymentIntegration'), t('services.authentication')],
+    },
+  ];
+
+  const stats = [
+    { value: 50, suffix: "+", label: t('stats.projects'), icon: Rocket },
+    { value: 40, suffix: "+", label: t('stats.clients'), icon: Users },
+    { value: 100, suffix: "%", label: t('stats.satisfaction'), icon: Heart },
+    { value: 24, suffix: "/7", label: t('stats.support'), icon: Shield },
+  ];
+
+  const whyChooseUs = [
+    {
+      icon: TrendingUp,
+      title: t('whyChooseUs.growthFocused'),
+      description: t('whyChooseUs.growthDesc')
+    },
+    {
+      icon: Clock,
+      title: t('whyChooseUs.fastDelivery'),
+      description: t('whyChooseUs.fastDesc')
+    },
+    {
+      icon: Award,
+      title: t('whyChooseUs.premiumQuality'),
+      description: t('whyChooseUs.qualityDesc')
+    },
+    {
+      icon: Target,
+      title: t('whyChooseUs.resultsDriven'),
+      description: t('whyChooseUs.resultsDesc')
+    },
+  ];
+
+  const results = [
+    { metric: "300%", label: t('results.leadsIncrease') },
+    { metric: "50%", label: t('results.bounceReduction') },
+    { metric: "10x", label: t('results.roi') },
+    { metric: "2 sec", label: t('results.loadTime') },
+  ];
+
   return (
     <div className="min-h-screen overflow-hidden">
       {/* 1️⃣ Hero Section */}
@@ -122,7 +125,7 @@ const HomePage = () => {
             >
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
                 <Sparkles size={16} />
-                Premium Web Development Agency
+                {t('hero.badge')}
               </span>
             </motion.div>
             
@@ -132,8 +135,8 @@ const HomePage = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                Transform Your Vision Into{" "}
-                <span className="gradient-text">Digital Reality</span>
+                {t('hero.title')}{" "}
+                <span className="gradient-text">{t('hero.titleHighlight')}</span>
               </h1>
             </motion.div>
             
@@ -143,7 +146,7 @@ const HomePage = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed"
             >
-              We're not just developers—we're digital architects who turn your wildest ideas into pixel-perfect, high-converting web experiences that your competitors will envy.
+              {t('hero.description')}
             </motion.p>
             
             <motion.div
@@ -154,12 +157,12 @@ const HomePage = () => {
             >
               <Button variant="hero" size="xl" asChild>
                 <Link to="/contact">
-                  Start Your Project
+                  {t('hero.cta')}
                   <ArrowRight className="ml-2" size={20} />
                 </Link>
               </Button>
               <Button variant="hero-outline" size="xl" asChild>
-                <Link to="/portfolio">View Our Magic</Link>
+                <Link to="/portfolio">{t('hero.ctaSecondary')}</Link>
               </Button>
             </motion.div>
             
@@ -172,15 +175,15 @@ const HomePage = () => {
             >
               <div className="flex items-center gap-2">
                 <CheckCircle size={16} className="text-primary" />
-                <span>50+ Projects Delivered</span>
+                <span>{t('hero.projectsDelivered')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle size={16} className="text-primary" />
-                <span>100% Client Satisfaction</span>
+                <span>{t('hero.satisfaction')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle size={16} className="text-primary" />
-                <span>24/7 Support</span>
+                <span>{t('hero.support')}</span>
               </div>
             </motion.div>
           </div>
@@ -198,7 +201,7 @@ const HomePage = () => {
             transition={{ duration: 2, repeat: Infinity }}
             className="flex flex-col items-center gap-2 text-muted-foreground"
           >
-            <span className="text-sm">Scroll to explore</span>
+            <span className="text-sm">{t('hero.scrollToExplore')}</span>
             <ArrowDown size={20} />
           </motion.div>
         </motion.div>
@@ -229,10 +232,10 @@ const HomePage = () => {
           <FadeInOnView>
             <div className="text-center mb-16">
               <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-                Why Businesses <span className="gradient-text">Choose Us</span>
+                {t('whyChooseUs.title')} <span className="gradient-text">{t('whyChooseUs.titleHighlight')}</span>
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                We don't just build websites—we build success stories
+                {t('whyChooseUs.subtitle')}
               </p>
             </div>
           </FadeInOnView>
@@ -260,10 +263,10 @@ const HomePage = () => {
             <FadeInOnView>
               <div>
                 <h2 className="font-display text-3xl md:text-5xl font-bold mb-6">
-                  Real <span className="gradient-text">Results</span> That Matter
+                  {t('results.title')} <span className="gradient-text">{t('results.titleHighlight')}</span> {t('results.titleEnd')}
                 </h2>
                 <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-                  We don't just promise results—we deliver them. Our clients see measurable improvements in traffic, conversions, and revenue within the first month of launch.
+                  {t('results.description')}
                 </p>
                 <div className="grid grid-cols-2 gap-4">
                   {results.map((result) => (
@@ -281,18 +284,18 @@ const HomePage = () => {
               <GlassCard className="p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <BarChart3 className="w-8 h-8 text-primary" />
-                  <h3 className="font-display text-xl font-semibold">Client Success Story</h3>
+                  <h3 className="font-display text-xl font-semibold">{t('results.successStory')}</h3>
                 </div>
                 <blockquote className="text-muted-foreground italic mb-6 leading-relaxed">
-                  "After launching our new website with NEXORA, our online sales increased by 400% in just 3 months. The ROI was incredible—best business decision we ever made."
+                  "{t('results.testimonial')}"
                 </blockquote>
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
                     <span className="text-sm font-semibold text-primary-foreground">JK</span>
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground">James Kim</p>
-                    <p className="text-sm text-muted-foreground">CEO, StyleHub E-commerce</p>
+                    <p className="font-semibold text-foreground">{t('results.clientName')}</p>
+                    <p className="text-sm text-muted-foreground">{t('results.clientRole')}</p>
                   </div>
                 </div>
               </GlassCard>
@@ -307,10 +310,10 @@ const HomePage = () => {
           <FadeInOnView>
             <div className="text-center mb-16">
               <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-                What We <span className="gradient-text">Craft</span>
+                {t('services.title')} <span className="gradient-text">{t('services.titleHighlight')}</span>
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Premium digital solutions tailored to elevate your business
+                {t('services.subtitle')}
               </p>
             </div>
           </FadeInOnView>
@@ -348,7 +351,7 @@ const HomePage = () => {
             <div className="text-center mt-12">
               <Button variant="outline" size="lg" asChild className="group">
                 <Link to="/services">
-                  Explore All Services
+                  {t('services.exploreAll')}
                   <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
                 </Link>
               </Button>
@@ -363,10 +366,10 @@ const HomePage = () => {
           <FadeInOnView>
             <div className="text-center mb-16">
               <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-                Simple <span className="gradient-text">3-Step</span> Process
+                {t('process.title')} <span className="gradient-text">{t('process.titleHighlight')}</span> {t('process.titleEnd')}
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Getting started is easy—we handle the complexity so you don't have to
+                {t('process.subtitle')}
               </p>
             </div>
           </FadeInOnView>
@@ -376,9 +379,9 @@ const HomePage = () => {
             <div className="hidden md:block absolute top-16 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-primary/50 via-accent/50 to-primary/50" />
             
             {[
-              { step: 1, icon: MessageSquare, title: "Free Consultation", desc: "Tell us about your vision, goals, and budget. We'll create a custom plan." },
-              { step: 2, icon: Code, title: "We Build & Iterate", desc: "Watch your project come to life with regular updates and feedback rounds." },
-              { step: 3, icon: Globe, title: "Launch & Grow", desc: "Go live with ongoing support to ensure your success continues." },
+              { step: 1, icon: MessageSquare, title: t('process.step1Title'), desc: t('process.step1Desc') },
+              { step: 2, icon: Code, title: t('process.step2Title'), desc: t('process.step2Desc') },
+              { step: 3, icon: Globe, title: t('process.step3Title'), desc: t('process.step3Desc') },
             ].map((item, index) => (
               <FadeInOnView key={item.step} delay={index * 0.15}>
                 <div className="text-center relative">
@@ -399,7 +402,7 @@ const HomePage = () => {
             <div className="text-center mt-12">
               <Button variant="hero" size="xl" asChild>
                 <Link to="/contact">
-                  Book Free Consultation
+                  {t('process.bookConsultation')}
                   <ArrowRight className="ml-2" size={20} />
                 </Link>
               </Button>
@@ -421,26 +424,26 @@ const HomePage = () => {
                 <div className="text-center lg:text-left">
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-4">
                     <Bot size={16} />
-                    See AI in Action
+                    {t('liveDemo.title')}
                   </div>
                   <h3 className="font-display text-2xl md:text-3xl font-bold mb-3">
-                    Get AI for Your <span className="gradient-text">Restaurant</span>
+                    {t('liveDemo.restaurantCta').split(' ').slice(0, -1).join(' ')} <span className="gradient-text">{t('liveDemo.restaurantCta').split(' ').slice(-1)}</span>
                   </h3>
                   <p className="text-muted-foreground max-w-xl">
-                    Experience how our AI voice agents can handle reservations, answer questions, and boost your restaurant's efficiency 24/7.
+                    {t('liveDemo.subtitle')}
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button variant="hero" size="xl" asChild>
                     <Link to="/contact">
                       <Play className="mr-2" size={20} />
-                      Request Live Demo
+                      {t('liveDemo.requestDemo')}
                     </Link>
                   </Button>
                   <Button variant="outline" size="xl" asChild>
                     <a href="tel:+1234567890">
                       <Phone className="mr-2" size={18} />
-                      Call Now
+                      {t('common.contactUs', 'Call Now')}
                     </a>
                   </Button>
                 </div>
@@ -456,10 +459,10 @@ const HomePage = () => {
           <FadeInOnView>
             <div className="text-center mb-16">
               <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-                Meet Your <span className="gradient-text">Digital Partner</span>
+                {t('founder.title')} <span className="gradient-text">{t('founder.titleHighlight')}</span>
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                The visionary founder behind NEXORA's success
+                {t('founder.description')}
               </p>
             </div>
           </FadeInOnView>
@@ -480,7 +483,7 @@ const HomePage = () => {
                       </div>
                     </div>
                     <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-5 py-1.5 bg-gradient-to-r from-primary to-accent rounded-full shadow-lg">
-                      <span className="text-xs font-semibold text-primary-foreground whitespace-nowrap">Founder & Owner</span>
+                      <span className="text-xs font-semibold text-primary-foreground whitespace-nowrap">{t('founder.badge')}</span>
                     </div>
                   </div>
                   
@@ -488,7 +491,7 @@ const HomePage = () => {
                     <h3 className="font-display text-3xl font-bold text-foreground mb-2">Ali Haider</h3>
                     <p className="text-primary font-medium text-lg mb-4">CEO & Lead Developer</p>
                     <p className="text-muted-foreground leading-relaxed mb-6">
-                      Ali Haider is the Founder of Nexora, a forward-thinking technology company focused on building smart, scalable, and AI-driven digital solutions. Driven by creativity and problem-solving, he believes in delivering solutions that are not only visually appealing but also highly functional and future-ready.
+                      {t('founder.description')}
                     </p>
                     
                     {/* Social Links */}
@@ -524,7 +527,7 @@ const HomePage = () => {
               <div className="text-center mt-10">
                 <Button variant="glow" asChild>
                   <Link to="/about">
-                    Meet Our Full Team
+                    {t('about.meetTeam')} {t('about.teamHighlight')}
                     <ArrowRight className="ml-2" size={18} />
                   </Link>
                 </Button>
@@ -540,9 +543,9 @@ const HomePage = () => {
           <FadeInOnView>
             <div className="text-center mb-16">
               <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-                Powered By <span className="gradient-text">Excellence</span>
+                {t('techStack.title')} <span className="gradient-text">{t('techStack.titleHighlight')}</span>
               </h2>
-              <p className="text-muted-foreground">Cutting-edge technologies for cutting-edge solutions</p>
+              <p className="text-muted-foreground">{t('techStack.subtitle')}</p>
             </div>
           </FadeInOnView>
           
@@ -560,9 +563,9 @@ const HomePage = () => {
           <FadeInOnView>
             <div className="text-center mb-16">
               <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-                Don't Just Take <span className="gradient-text">Our Word</span>
+                {t('testimonials.title')} <span className="gradient-text">{t('testimonials.titleHighlight')}</span>
               </h2>
-              <p className="text-muted-foreground">What our clients say about working with us</p>
+              <p className="text-muted-foreground">{t('testimonials.subtitle', 'What our clients say about working with us')}</p>
             </div>
           </FadeInOnView>
           
@@ -605,26 +608,26 @@ const HomePage = () => {
               <div className="relative z-10">
                 <Sparkles className="w-12 h-12 text-primary mx-auto mb-6" />
                 <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-                  Ready to <span className="gradient-text">Dominate</span> Online?
+                  {t('cta.title')} <span className="gradient-text">{t('cta.titleHighlight')}</span>
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto mb-8 text-lg">
-                  Join 50+ businesses that chose NEXORA to transform their digital presence. Your competitors won't know what hit them.
+                  {t('cta.subtitle')}
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <Button variant="hero" size="xl" asChild>
                     <Link to="/contact">
-                      Get Started Today
+                      {t('cta.getStarted')}
                       <ArrowRight className="ml-2" size={20} />
                     </Link>
                   </Button>
                   <Button variant="outline" size="xl" asChild>
-                    <Link to="/portfolio">See Our Work</Link>
+                    <Link to="/portfolio">{t('cta.viewPortfolio')}</Link>
                   </Button>
                 </div>
                 
                 {/* Urgency text */}
                 <p className="mt-6 text-sm text-muted-foreground">
-                  <span className="text-primary font-medium">Limited spots available</span> — We only take on 3 new clients per month
+                  <span className="text-primary font-medium">{t('cta.limitedSpots')}</span>
                 </p>
               </div>
             </GlassCard>
