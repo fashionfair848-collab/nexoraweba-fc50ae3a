@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, MessageCircle, Linkedin, Send, Check, ChevronDown, ChevronUp, Loader2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,42 +11,8 @@ import GlassCard from "@/components/ui/GlassCard";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { sendEmailNotification, generateWhatsAppNotification, BUSINESS_EMAIL, BUSINESS_PHONE, WHATSAPP_NUMBER } from "@/lib/emailjs";
 
-const faqs = [
-  {
-    question: "How long does a typical project take?",
-    answer: "Starter packages: 2 weeks | Professional: 4-6 weeks | Enterprise: 8-12 weeks. Custom timelines available.",
-  },
-  {
-    question: "Do you offer payment plans?",
-    answer: "Yes! We offer flexible payment milestones: 30% upfront, 40% midway, 30% on completion.",
-  },
-  {
-    question: "What if I need changes after launch?",
-    answer: "All packages include free support period. After that, we offer affordable maintenance plans or pay-per-change options.",
-  },
-  {
-    question: "Can you work with my existing website?",
-    answer: "Absolutely! We can redesign, optimize, or add features to existing sites.",
-  },
-  {
-    question: "Do you provide hosting?",
-    answer: "Yes, we can manage hosting or help you set up your own. We recommend reliable, affordable hosting partners.",
-  },
-  {
-    question: "What about AI Voice Agents for my restaurant?",
-    answer: "Yes! We now offer AI voice agents that can answer calls 24/7, book reservations, and handle customer inquiries automatically.",
-  },
-];
-
-const trustBadges = [
-  "Free consultation, no strings attached",
-  "Response within 2 hours guaranteed",
-  "Clear, transparent pricing",
-  "No hidden fees ever",
-  "100% client satisfaction record",
-];
-
 const ContactPage = () => {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
@@ -58,28 +25,60 @@ const ContactPage = () => {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const faqs = [
+    {
+      question: t('faq.projectTime.question', "How long does a typical project take?"),
+      answer: t('faq.projectTime.answer', "Starter packages: 2 weeks | Professional: 4-6 weeks | Enterprise: 8-12 weeks. Custom timelines available."),
+    },
+    {
+      question: t('faq.paymentPlans.question', "Do you offer payment plans?"),
+      answer: t('faq.paymentPlans.answer', "Yes! We offer flexible payment milestones: 30% upfront, 40% midway, 30% on completion."),
+    },
+    {
+      question: t('faq.changesAfterLaunch.question', "What if I need changes after launch?"),
+      answer: t('faq.changesAfterLaunch.answer', "All packages include free support period. After that, we offer affordable maintenance plans or pay-per-change options."),
+    },
+    {
+      question: t('faq.existingWebsite.question', "Can you work with my existing website?"),
+      answer: t('faq.existingWebsite.answer', "Absolutely! We can redesign, optimize, or add features to existing sites."),
+    },
+    {
+      question: t('faq.hosting.question', "Do you provide hosting?"),
+      answer: t('faq.hosting.answer', "Yes, we can manage hosting or help you set up your own. We recommend reliable, affordable hosting partners."),
+    },
+    {
+      question: t('faq.aiVoiceAgents.question', "What about AI Voice Agents for my restaurant?"),
+      answer: t('faq.aiVoiceAgents.answer', "Yes! We now offer AI voice agents that can answer calls 24/7, book reservations, and handle customer inquiries automatically."),
+    },
+  ];
+
+  const trustBadges = [
+    t('contact.freeConsultation'),
+    t('contact.responseGuarantee'),
+    t('contact.transparentPricing'),
+    t('contact.noHiddenFees'),
+    t('contact.satisfactionRecord'),
+  ];
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
     try {
-      // Send email notification
       const emailResult = await sendEmailNotification(formData);
       
       if (emailResult.success) {
         toast({
-          title: "🎉 Message Sent Successfully!",
-          description: "We've received your message and will respond within 2 hours. Check your email for confirmation!",
+          title: "🎉 " + t('common.success', "Message Sent Successfully!"),
+          description: t('contact.successMessage', "We've received your message and will respond within 2 hours. Check your email for confirmation!"),
         });
       } else {
-        // Even if email fails, show success since form was submitted
         toast({
-          title: "📨 Message Received!",
-          description: "We've got your details and will contact you shortly via WhatsApp or email.",
+          title: "📨 " + t('contact.messageReceived', "Message Received!"),
+          description: t('contact.willContact', "We've got your details and will contact you shortly via WhatsApp or email."),
         });
       }
       
-      // Generate WhatsApp backup notification link
       const whatsappUrl = generateWhatsAppNotification(formData);
       console.log('Backup WhatsApp notification URL:', whatsappUrl);
       
@@ -94,8 +93,8 @@ const ContactPage = () => {
     } catch (error) {
       console.error('Form submission error:', error);
       toast({
-        title: "✅ Message Received!",
-        description: "We'll get back to you within 2 hours via WhatsApp or email.",
+        title: "✅ " + t('contact.messageReceived', "Message Received!"),
+        description: t('contact.willContact', "We'll get back to you within 2 hours via WhatsApp or email."),
       });
     }
     
@@ -118,7 +117,7 @@ const ContactPage = () => {
               transition={{ duration: 0.8 }}
               className="font-display text-4xl md:text-6xl font-bold mb-6"
             >
-              Let's Make <span className="gradient-text">Magic Happen</span>
+              {t('contact.title')} <span className="gradient-text">{t('contact.titleHighlight')}</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -126,7 +125,7 @@ const ContactPage = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-xl text-muted-foreground leading-relaxed"
             >
-              Whether you have a detailed plan or just a spark of an idea, we're here to help. No question is too small, no dream is too big. Let's talk.
+              {t('contact.subtitle')}
             </motion.p>
           </div>
         </div>
@@ -144,11 +143,11 @@ const ContactPage = () => {
               viewport={{ once: true }}
             >
               <GlassCard>
-                <h2 className="font-display text-2xl font-bold mb-6">Send Us a Message</h2>
+                <h2 className="font-display text-2xl font-bold mb-6">{t('contact.sendMessage')}</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm text-muted-foreground mb-2 block">Full Name *</label>
+                      <label className="text-sm text-muted-foreground mb-2 block">{t('contact.fullName')} *</label>
                       <Input
                         name="name"
                         value={formData.name}
@@ -159,7 +158,7 @@ const ContactPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="text-sm text-muted-foreground mb-2 block">Email Address *</label>
+                      <label className="text-sm text-muted-foreground mb-2 block">{t('contact.email')} *</label>
                       <Input
                         name="email"
                         type="email"
@@ -174,7 +173,7 @@ const ContactPage = () => {
                   
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm text-muted-foreground mb-2 block">Phone Number</label>
+                      <label className="text-sm text-muted-foreground mb-2 block">{t('contact.phone')}</label>
                       <Input
                         name="phone"
                         type="tel"
@@ -185,16 +184,16 @@ const ContactPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="text-sm text-muted-foreground mb-2 block">Service Interested In *</label>
+                      <label className="text-sm text-muted-foreground mb-2 block">{t('contact.serviceInterested')} *</label>
                       <Select
                         value={formData.service}
                         onValueChange={(value) => setFormData((prev) => ({ ...prev, service: value }))}
                       >
                         <SelectTrigger className="bg-secondary/50 border-border">
-                          <SelectValue placeholder="Select a service" />
+                          <SelectValue placeholder={t('contact.selectService')} />
                         </SelectTrigger>
                         <SelectContent>
-                        <SelectItem value="starter">Starter Package ($500-$1,000)</SelectItem>
+                          <SelectItem value="starter">Starter Package ($500-$1,000)</SelectItem>
                           <SelectItem value="professional">Professional Package ($1,500-$3,000)</SelectItem>
                           <SelectItem value="enterprise">Enterprise Package ($5,000+)</SelectItem>
                           <SelectItem value="ai-agent">AI Voice Agent for Restaurant</SelectItem>
@@ -206,13 +205,13 @@ const ContactPage = () => {
                   </div>
                   
                   <div>
-                    <label className="text-sm text-muted-foreground mb-2 block">Budget Range</label>
+                    <label className="text-sm text-muted-foreground mb-2 block">{t('contact.budgetRange')}</label>
                     <Select
                       value={formData.budget}
                       onValueChange={(value) => setFormData((prev) => ({ ...prev, budget: value }))}
                     >
                       <SelectTrigger className="bg-secondary/50 border-border">
-                        <SelectValue placeholder="Select your budget" />
+                        <SelectValue placeholder={t('contact.selectBudget')} />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="500-1000">$500 - $1,000</SelectItem>
@@ -225,12 +224,12 @@ const ContactPage = () => {
                   </div>
                   
                   <div>
-                    <label className="text-sm text-muted-foreground mb-2 block">Project Description *</label>
+                    <label className="text-sm text-muted-foreground mb-2 block">{t('contact.projectDescription')} *</label>
                     <Textarea
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="Tell us about your vision..."
+                      placeholder={t('contact.tellUs')}
                       required
                       rows={5}
                       className="bg-secondary/50 border-border resize-none"
@@ -247,11 +246,11 @@ const ContactPage = () => {
                     {isSubmitting ? (
                       <>
                         <Loader2 className="mr-2 animate-spin" size={18} />
-                        Sending...
+                        {t('contact.sending')}
                       </>
                     ) : (
                       <>
-                        Send Message
+                        {t('contact.send')}
                         <Send className="ml-2" size={18} />
                       </>
                     )}
@@ -270,7 +269,7 @@ const ContactPage = () => {
             >
               {/* Contact Methods */}
               <GlassCard>
-                <h2 className="font-display text-2xl font-bold mb-6">Get in Touch</h2>
+                <h2 className="font-display text-2xl font-bold mb-6">{t('contact.getInTouch')}</h2>
                 <div className="space-y-6">
                   <a
                     href={`mailto:${BUSINESS_EMAIL}`}
@@ -280,9 +279,9 @@ const ContactPage = () => {
                       <Mail className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground">Email Us</p>
+                      <p className="font-semibold text-foreground">{t('contact.emailUs')}</p>
                       <p className="text-primary">{BUSINESS_EMAIL}</p>
-                      <p className="text-sm text-muted-foreground">Response within 2 hours</p>
+                      <p className="text-sm text-muted-foreground">{t('contact.responseTime')}</p>
                     </div>
                   </a>
                   
@@ -296,9 +295,9 @@ const ContactPage = () => {
                       <MessageCircle className="w-6 h-6 text-[#25D366]" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground">WhatsApp</p>
+                      <p className="font-semibold text-foreground">{t('contact.whatsapp')}</p>
                       <p className="text-[#25D366]">{BUSINESS_PHONE}</p>
-                      <p className="text-sm text-muted-foreground">Fastest way to reach us!</p>
+                      <p className="text-sm text-muted-foreground">{t('contact.fastestWay')}</p>
                     </div>
                   </a>
                   
@@ -312,9 +311,9 @@ const ContactPage = () => {
                       <Linkedin className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground">LinkedIn</p>
-                      <p className="text-primary">Connect professionally</p>
-                      <p className="text-sm text-muted-foreground">See our journey</p>
+                      <p className="font-semibold text-foreground">{t('contact.linkedin')}</p>
+                      <p className="text-primary">{t('contact.connectProfessionally')}</p>
+                      <p className="text-sm text-muted-foreground">{t('contact.seeJourney')}</p>
                     </div>
                   </a>
                   
@@ -326,7 +325,7 @@ const ContactPage = () => {
                       <Phone className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground">Phone</p>
+                      <p className="font-semibold text-foreground">{t('contact.phone', 'Phone')}</p>
                       <p className="text-primary">{BUSINESS_PHONE}</p>
                       <p className="text-sm text-muted-foreground">Mon-Fri, 9 AM - 6 PM PKT</p>
                     </div>
@@ -337,9 +336,9 @@ const ContactPage = () => {
                       <MapPin className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground">Location</p>
+                      <p className="font-semibold text-foreground">{t('contact.location')}</p>
                       <p className="text-muted-foreground">Lahore, Pakistan</p>
-                      <p className="text-sm text-muted-foreground">Serving clients worldwide</p>
+                      <p className="text-sm text-muted-foreground">{t('contact.servingWorldwide')}</p>
                     </div>
                   </div>
                 </div>
@@ -366,7 +365,7 @@ const ContactPage = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-              Frequently Asked <span className="gradient-text">Questions</span>
+              {t('contact.faqTitle')} <span className="gradient-text">{t('contact.faqHighlight')}</span>
             </h2>
           </div>
           
