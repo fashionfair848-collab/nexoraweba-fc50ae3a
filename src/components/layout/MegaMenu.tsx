@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Menu, X, ChevronDown, ArrowRight, Globe, 
+  Menu, X, ChevronDown, ArrowRight,
   Code, Smartphone, Settings, Palette, ShoppingCart,
   Search, Share2, Mail, FileText, Target,
   Building2, Heart, Home, GraduationCap, ShoppingBag, Landmark,
@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
+import LanguageSwitcher from "./LanguageSwitcher";
 import NexoraLogo from "@/assets/nexora-logo.svg";
 
 interface MenuItem {
@@ -239,11 +240,7 @@ const MegaMenu = () => {
 
           {/* Right Side */}
           <div className="hidden lg:flex items-center gap-2 xl:gap-3 shrink-0">
-            <button className="flex items-center gap-1.5 xl:gap-2 px-2 xl:px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
-              <Globe size={16} />
-              <span className="hidden xl:inline">Global (EN)</span>
-              <ChevronDown size={14} />
-            </button>
+            <LanguageSwitcher />
             <ThemeToggle />
             <Button variant="glow" size="sm" className="text-sm px-3 xl:px-4" asChild>
               <Link to="/contact">Book a Service</Link>
@@ -252,6 +249,7 @@ const MegaMenu = () => {
 
           {/* Mobile Menu Toggle */}
           <div className="lg:hidden flex items-center gap-2">
+            <LanguageSwitcher />
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
